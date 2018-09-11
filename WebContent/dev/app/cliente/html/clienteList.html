@@ -1,0 +1,51 @@
+﻿<meta charset="UTF-8" />
+<md-card style="padding-top: 15px;" ng-hide="$clienteListCtrl.hideFilter==true">
+        <md-toolbar class="md-table-toolbar md-default">
+	          <div layout="row" class="md-toolbar-tools"  layout-wrap>
+		           <div flex="20"  hide-xs md-hide-xs>
+					   <md-button class="add-button md-raised" ng-click="$clienteListCtrl.data.openDetail()" >
+					   <ng-md-icon icon="add"></ng-md-icon>
+					      Cadastrar
+					    </md-button>
+			       </div>
+				   <st-filter  
+				         flex-xs="80" 
+				         flex="60"
+						 query-options = "$clienteListCtrl.data.requestListParams"
+						 get-list = "$clienteListCtrl.data.getList"
+						 filtros="$clienteListCtrl.data.filtros"
+						>
+				   </st-filter>
+	   			<view-chose flex="10" view-type="config.confs.viewType" ></view-chose>
+	          </div>
+         </md-toolbar>
+</md-card>
+
+	<float-button-add ng-hide="$clienteListCtrl.hideButtonAdd==true"  class="float-add-button" tooltip-label="Cadastrar novo cliente" ng-click="$clienteListCtrl.data.openDetail()" ></float-button-add>
+	<div layout="row" style="margin:8px">
+	    <md-progress-linear
+	          flex
+	          ng-if="$clienteListCtrl.data.loading===true"
+	          md-mode="indeterminate">
+	    </md-progress-linear>
+	</div>
+	
+	<st-selected-items-actions 
+	   delete-function="$clienteListCtrl.data.deleteFunction($clienteListCtrl.data.getSelectedItemsIds())" 
+	   selected-items="$clienteListCtrl.data.selectedItems">
+	</st-selected-items-actions>
+	 
+ 	<cliente-grid-view ng-show="config.confs.viewType=='grid'" ></cliente-grid-view>
+ 	<cliente-table-view  ng-show="config.confs.viewType=='table'" ></cliente-table-view>
+	
+	<div ng-if="$clienteListCtrl.data.objetos.length==0">
+	    <p class="text-muted">Nenhum item encontrado</p>
+    </div>
+   
+    <st-filter-pagination
+         ng-hide="$clienteListCtrl.hidePagination==true" 
+	     total-itens="$clienteListCtrl.data.totalItens" 
+	     itens-in-page="$clienteListCtrl.data.objetos.length" 
+	     get-list="$clienteListCtrl.data.getList" 
+	     query-options="$clienteListCtrl.data.requestListParams"  >
+    </st-filter-pagination>

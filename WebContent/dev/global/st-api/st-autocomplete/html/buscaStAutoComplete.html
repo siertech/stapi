@@ -1,0 +1,55 @@
+<md-dialog >
+<md-toolbar>
+      <div class="md-toolbar-tools" layout="row">
+        <input 
+        
+           style="border-radius: 5px;border: none;height: 42px;min-width: 300px;padding: 5px;"
+           flex="90" 
+           ng-change="$stAutoCompleteCtrl.buscarItem($stAutoCompleteCtrl.labelValue)" 
+           ng-model-options="{debounce: 500}"  ng-model="$stAutoCompleteCtrl.labelValue"
+           autocomplete="off"  
+           placeholder="{{$stAutoCompleteCtrl.placeholder}}" 
+           focus-me="true"/>
+      
+        <md-button flex="10" ng-click="$stAutoCompleteCtrl.fecharDialog()" class="md-icon-button" >
+          <ng-md-icon icon="close"></ng-md-icon>
+        </md-button>
+      </div>
+  </md-toolbar>
+   <md-dialog-content layout="column">
+   
+     <md-progress-linear
+          ng-if="$stAutoCompleteCtrl.loadingIsVisible()"
+          md-mode="indeterminate">
+     </md-progress-linear>
+     
+     <md-list flex>
+        <md-list-item class="md-primary" ng-if="$stAutoCompleteCtrl.labelValue.length>0 && $stAutoCompleteCtrl.loading!=true">
+                <md-button  ng-click="$stAutoCompleteCtrl.cadastrarItem($stAutoCompleteCtrl.labelValue, $stAutoCompleteCtrl.auxItemFilial.allFilials, this)"   class="md-block">
+                    cadastrar <strong>"{{$stAutoCompleteCtrl.labelValue}}"</strong>
+                </md-button>
+        </md-list-item>
+     </md-list>
+     
+       
+       <md-divider flex></md-divider>
+		
+	    <!-- Resultados --> 
+	   <md-list flex  >
+	      <md-list-item ng-repeat="item in $stAutoCompleteCtrl.obs" ng-click="$stAutoCompleteCtrl.selecionarItem(item, this)" >
+	             {{item[1] || item[attr] || $stAutoCompleteCtrl.getValueOfNivel(item,$stAutoCompleteCtrl.attr)}}
+	            <md-divider flex ng-if="!$last"></md-divider>
+	      </md-list-item>
+	   </md-list>
+	
+	 </md-dialog-content>
+
+  </md-dialog>
+ 
+
+ 
+	       
+
+
+
+

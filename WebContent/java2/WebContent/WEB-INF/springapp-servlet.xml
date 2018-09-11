@@ -1,0 +1,119 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+      
+     <!-- Mapeamento de classes da aplicacao--> 
+	 
+	<context:component-scan base-package="artigo" />   
+	 
+	 
+     <context:component-scan base-package="democomponent" />   
+	
+	 
+     <!-- Mapeamento de classes da API -->
+     <context:component-scan base-package="com.siertech.stapi.cliente" />   
+     <context:component-scan base-package="com.siertech.stapi.security" /> 
+     <context:component-scan base-package="com.siertech.stapi.pessoa" />
+	<context:component-scan base-package="com.siertech.stapi.util" />
+	<context:component-scan base-package="com.siertech.stapi.operadorsistema" />
+	<context:component-scan base-package="com.siertech.stapi.config" />
+	<context:component-scan base-package="com.siertech.stapi.database" />
+	<context:component-scan base-package="com.siertech.stapi.usersystem" />
+    <context:component-scan base-package="com.siertech.stapi.filial" />
+    <context:component-scan base-package="com.siertech.stapi.gerencianet" />
+    <context:component-scan base-package="com.siertech.stapi.transactional" />
+    <context:component-scan base-package="com.siertech.stapi.estadoscidades" />
+    <context:component-scan base-package="com.siertech.stapi.opcao" />
+    <context:component-scan base-package="com.siertech.stapi.projecao" />
+    <context:component-scan base-package="com.siertech.stapi.teste" />
+
+    
+    
+      
+    <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		 <!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="100000" />
+
+	</bean>
+	
+	
+	
+    <!-- Session Factory para Mult-Tenant para o Spring -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+			    <prop key="hibernate.hbm2ddl.auto">NONE</prop>
+				<prop key="hibernate.multiTenancy">SCHEMA</prop>
+				<prop key="hibernate.tenant_identifier_resolver">com.siertech.stapi.database.CurrentTenantIdentifierResolverImpl</prop>
+				<prop key="hibernate.multi_tenant_connection_provider">com.siertech.stapi.database.MultiTenantConnectionProvider</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--Session Factory para atualização de um schema -->
+	<bean id="sessionFactorySchemaManager"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+			<props>
+			    <prop key="hibernate.hbm2ddl.auto">update</prop>
+			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+			    <prop key="hibernate.multiTenancy">NONE</prop>
+			  
+		    </props>
+		</property>
+		 
+	</bean>
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<security:global-method-security secured-annotations="enabled"/>
+	<mvc:resources mapping="/**" location="/" />
+	 <mvc:resources mapping="/resources/**" location="/" />
+    <mvc:resources mapping="/resources/**/**" location="/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/comanda/**" location="/comanda/" />
+	<mvc:resources mapping="/dist/**" location="/dist/" />
+	<mvc:resources mapping="/adm/**" location="/dev/" />
+	<mvc:resources mapping="/global/**" location="/global/" />
+
+    <mvc:annotation-driven />
+    
+</beans>

@@ -1,0 +1,39 @@
+<meta charset="UTF-8" />
+<section layout="row" flex layout-align-md="center center">
+         <span flex></span>
+        <md-card flex-gt-md="35" flex-xs="100">
+	            <div layout="row" layout-align="center center">
+	                <div>
+	                    <img style="width: 399px" src="images/logo-login.png" />
+	                </div>
+	            </div>
+	            <md-card-content>
+	                    
+		                <form name="login">
+			                    <md-input-container class="md-block">
+			                        <label for="empresa">Empresa</label>
+			                        <input name="empresa" ng-model="$loginCtrl.login.empresa" required />
+			                    </md-input-container>
+		                        <md-input-container class="md-block">
+			                        <label for="usuario">Usuário</label>
+			                        <input name="usuario" ng-model="$loginCtrl.login.usuario" required />
+		                        </md-input-container>
+			                    <md-input-container class="md-block">
+			                        <label for="password">Senha</label>
+			                        <input type="password" name="password" ng-model="$loginCtrl.login.senha" required />
+			                    </md-input-container>
+			                    <md-input-container class="md-block">
+			                        <div layout="row" layout-align="center center">
+			                            <md-button flex="50"
+										     g-login type="button" class="md-raised md-warn">
+										    <ng-md-icon icon="google-plus-box"></ng-md-icon> 
+										    Google Login
+										</md-button>
+			                            <md-button  ng-disabled="$loginCtrl.loading==true" ng-click="$loginCtrl.logar($loginCtrl.login,$loginCtrl.lembrarSenha)" class="md-raised md-primary" flex="50">Entrar no sistema</md-button>
+			                        </div>
+			                    </md-input-container>
+		                </form>
+	            </md-card-content>
+         </md-card>
+        <span flex></span>
+    </section>

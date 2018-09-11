@@ -1,0 +1,30 @@
+<form ng-cloak class="st-detalhe-content">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{$democomponentDetalheCtrl.data.item._string.nome || 'Cadastrar novo democomponent'}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$democomponentDetalheCtrl.data.cancelFunction()">
+             <ng-md-icon icon="close"></ng-md-icon> 
+        </md-button>
+      </div>
+    </md-toolbar>
+  
+    <md-dialog-content>
+      <div class="md-dialog-content" >
+          <democomponent-form></democomponent-form>
+          <md-divider ></md-divider>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions   layout="row">
+      <md-button ng-show="$democomponentDetalheCtrl.data.item.id" confirm ng-disabled="$democomponentDetalheCtrl.data.loading==true"  ng-click="$democomponentDetalheCtrl.data.deleteFunction($democomponentDetalheCtrl.data.item)" class="md-raised md-warn" >
+	      <ng-md-icon icon="delete"></ng-md-icon>
+	       Deletar
+      </md-button>
+      <md-button  ng-disabled="$democomponentDetalheCtrl.data.loading==true" ng-click="$democomponentDetalheCtrl.data.saveFunction($democomponentDetalheCtrl.data.item)"  class="md-raised md-primary" >
+          <ng-md-icon icon="check_circle"></ng-md-icon>
+          Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+    

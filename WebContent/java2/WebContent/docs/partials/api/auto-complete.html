@@ -1,0 +1,57 @@
+<h1><code ng:non-bindable="">auto-complete</code>
+<div><span class="hint"></span>
+</div>
+</h1>
+<div><h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY auto-complete
+     label="{String@}"
+     object-name="{String@}"
+     attr="{String@}"
+     [ng-model="{Object}"]
+     initial-busca="{String@}"
+     extra-class="{String@}"
+     label-cad="{String@}"
+     place-holder="{String@}"
+     [value-only="{Boolean}"]&gt;
+   ...
+&lt;/ANY&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>label</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Texto que aparecerá acima da caixa de texto, ex: Nome do cliente</p>
+</div></td></tr><tr><td>objectName</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Nome do objeto que será utilizado na pesquisa (Em camel case), ex: Cliente</p>
+</div></td></tr><tr><td>attr</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Atributo do objeto que será utilizado na pesquisa , ex: nome</p>
+</div></td></tr><tr><td>ng-model <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="auto-complete-page"><p>Objeto no escopo a qual o elemento está relacionado , ex: empresa</p>
+</div></td></tr><tr><td>initialBusca</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Expressão padrão para busca de objeto, ex: Paulo</p>
+</div></td></tr><tr><td>extraClass</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Classe css extra a ser adicionada ao elemento input da diretiva</p>
+</div></td></tr><tr><td>labelCad</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>Texto a ser exibido no botão de cadastro de novo item</p>
+</div></td></tr><tr><td>placeHolder</td><td><a href="" class="label type-hint type-hint-string">String@</a></td><td><div class="auto-complete-page"><p>place-holder do elemento</p>
+</div></td></tr><tr><td>valueOnly <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="auto-complete-page"><p>se true, não seta o objeto inteiro no model, apenas o valor(objjeto[attr])</p>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="auto-complete-page"><p><p>Exemplo utilizando Um Objeto</p>
+<pre class="prettyprint linenums">
+&lt;auto-complete 
+	        label="Nome do cliente"
+	        object-name="Cliente"
+	        attr="nome",
+	        ng-model="empresa" 
+            initial-busca="João"  
+		    extra-class="input-lg"  
+		    label-cad="Cadastrar novo Cliente" 
+		    place-holder="Primeiro, digite o nome do cliente"  
+		    &gt;
+		 &lt;/auto-complete&gt;
+</pre>
+<p><p>Exemplo utilizando com.siertech.stapi.opcao</p>
+<pre class="prettyprint linenums">
+&lt;auto-complete     
+		    label-cad="Cadastrar categoria teste" 
+		    place-holder="placeHolderCategoria"  
+		    object-name="Opcao"  
+		    attr="valor" label="Descrição"
+		    fix-properties="{descricao:'categoria_teste'}" 
+		    ng-model="categoria" 
+		    value-only="true"
+		    initial-busca=""
+		  &lt;/auto-complete&gt;
+		  </pre>
+</div></div>
+</div>

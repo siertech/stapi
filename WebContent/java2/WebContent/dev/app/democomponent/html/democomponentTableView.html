@@ -1,0 +1,86 @@
+ <meta charset="UTF-8" />
+ <body layout="column">
+  <md-content layout="column" flex>
+     <md-card>
+        <md-toolbar layout="row" class="md-table-toolbar alternate md-default" ng-show="$democomponentListCtrl.data.selectedRows.length">
+              <md-menu flex>
+			      <md-button aria-label="Open phone interactions menu" class="md-default md-raised" ng-click="$democomponentListCtrl.showMdMenu($mdMenu, $event)">
+			          <span>{{$democomponentListCtrl.data.selectedRows.length}} items selecionados</span>
+			          <ng-md-icon icon="arrow_drop_down"></ng-md-icon>
+			      </md-button>
+			      <md-menu-content width="4">
+			       <md-menu-item>
+			          <md-button confirm ng-click="$democomponentListCtrl.data.deleteFunction($democomponentListCtrl.data.getSelectedRowsIds())">
+			            <ng-md-icon icon="delete"></ng-md-icon>
+			            Deletar
+			          </md-button>
+			        </md-menu-item>
+			      </md-menu-content>
+		    </md-menu>
+        </md-toolbar>
+        
+        <md-table-container>
+          <table md-table md-row-select="true" multiple="true" ng-model="$democomponentListCtrl.data.selectedRows">
+            <thead  md-head md-order="$democomponentListCtrl.data.orderBy">
+             <tr md-row>
+                 <th md-column md-column  md-order-by="_string.nome"  ><span>Nome</span></th>
+                <th md-column ><span>Tipo</span></th>
+                <th md-column  ><span>Cidade</span></th>
+                <th md-column ><span>Estado</span></th>
+                 <th md-column  md-order-by="comentarios"  >
+                  <ng-md-icon icon="comment"></ng-md-icon>
+                  <span>Comentários</span>
+                </th>
+                <th md-column></th>
+              </tr>
+            </thead>
+           <tbody md-body>
+              <tr ng-click="$democomponentListCtrl.data.openDetail(democomponent)" md-select-id="id" md-row md-select="democomponent"   ng-repeat="democomponent in $democomponentListCtrl.data.objetos | orderBy: $democomponentListCtrl.data.orderBy">
+                <td md-cell><strong>{{democomponent._string.titulo}}</strong></td>
+                <td md-cell>
+                  <md-select ng-change="$democomponentListCtrl.data.changeAttrValue(democomponent.id, 'tipoPessoa', democomponent.tipoPessoa)" ng-model="democomponent.tipoPessoa" placeholder="Selecione um tipo">
+                    <md-option ng-value="'Pessoa física'" >Pessoa física</md-option>
+                    <md-option ng-value="'Pessoa jurídica'" >Pessoa jurídica</md-option>
+                  </md-select>
+                </td>
+                <td md-cell>{{democomponent._string.cidade}}</td>
+                <td md-cell>{{democomponent._string.estado}}</td>
+              	<td id="colmun-edit-comentario" md-cell ng-click="$democomponentListCtrl.data.editColumn($event, {item: democomponent, column: 'comentarios', placeholder: 'Digite um comentário'})" ng-class="{'md-placeholder': !democomponent.comentarios}">
+                  {{democomponent.comentarios || 'Adicionar comentário'}}
+                </td>
+                <td md-cell>
+                     <md-menu flex>
+					      <md-button aria-label="Opções" class="md-icon-button" ng-click="$democomponentListCtrl.showMdMenu($mdMenu, $event)">
+					          <ng-md-icon icon="more_vert"></ng-md-icon>
+					      </md-button>
+					      <md-menu-content width="4">
+					      
+					       <md-menu-item>
+						        <md-button  ng-click="$democomponentListCtrl.data.openDetail(democomponent)">
+						            <ng-md-icon icon="mode_edit"></ng-md-icon>
+						            Editar
+						          </md-button>
+					       </md-menu-item>
+					       <md-menu-item>
+					            <md-button confirm ng-click="$democomponentListCtrl.data.deleteFunction([democomponent.id])">
+					             <ng-md-icon icon="delete"></ng-md-icon>
+					              Deletar
+					             </md-button>
+					        </md-menu-item>
+					           <md-menu-item>
+					              <md-button   button-info-ob  objeto="{{democomponent}}" >
+					                <ng-md-icon icon="access_time"></ng-md-icon>
+					                Histórico do item
+					               </md-button>
+					       </md-menu-item>
+					      </md-menu-content>
+				    </md-menu>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </md-card>
+   </md-content>
+    
+   

@@ -1,0 +1,33 @@
+<meta charset="UTF-8" />
+<section layout="row" flex layout-align-md="center center">
+         <span flex></span>
+        <md-card flex-gt-md="50" flex-xs="100">
+	            <md-toolbar layout="row" layout-align="center center">
+	                <div>
+	                    <div class="md-headline md-padding">Entrar no sistema</div>
+	                </div>
+	            </md-toolbar>
+	            <md-card-content>
+		                <form name="login">
+			                    <md-input-container class="md-block">
+			                        <label for="empresa">Empresa</label>
+			                        <input name="empresa" ng-model="$loginCtrl.login.empresa" required />
+			                    </md-input-container>
+		                        <md-input-container class="md-block">
+			                        <label for="usuario">Usuário</label>
+			                        <input name="usuario" ng-model="$loginCtrl.login.usuario" required />
+		                        </md-input-container>
+			                    <md-input-container class="md-block">
+			                        <label for="password">Senha</label>
+			                        <input type="password" name="password" ng-model="$loginCtrl.login.senha" required />
+			                    </md-input-container>
+			                    <md-input-container class="md-block">
+			                        <div layout="row" layout-align="center center">
+			                            <md-button  ng-disabled="$loginCtrl.loading==true" ng-click="$loginCtrl.logar($loginCtrl.login,$loginCtrl.lembrarSenha)" class="md-raised md-accent " flex="100">Login</md-button>
+			                        </div>
+			                    </md-input-container>
+		                </form>
+	            </md-card-content>
+         </md-card>
+        <span flex></span>
+    </section>

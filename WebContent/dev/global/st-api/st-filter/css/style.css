@@ -1,0 +1,24 @@
+
+
+
+
+
+/*Busca do Filter Map */
+.st-filter input, .st-filter input:hover {
+	border-right: none;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none!important;
+	border-color:none!important;
+}
+
+.st-filter-limpa, .st-filter-limpa:hover, .st-filter-limpa:active,
+	.st-filter-limpa:focus {
+	font: 27px/25px arial, sans-serif;
+	height: 42px;
+	border-left: none;
+	color: #333;
+	background-color: #FFFFFF;
+	box-shadow: none!important;
+}
+

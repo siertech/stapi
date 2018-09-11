@@ -1,0 +1,27 @@
+<meta charset="UTF-8" />
+<md-menu>
+      <md-button aria-label="Opções" class="md-icon-button" ng-click="$stCrudToolsCtrl.openMenu($mdMenu, $event)">
+          <ng-md-icon icon="{{$stCrudToolsCtrl.icon || 'more_vert'}}"></ng-md-icon>
+      </md-button>
+      <md-menu-content>
+      
+       <md-menu-item>
+	        <md-button  ng-click="$stCrudToolsCtrl.openDetail(cliente)">
+	            <ng-md-icon icon="mode_edit"></ng-md-icon>
+	            Editar
+	          </md-button>
+       </md-menu-item>
+       <md-menu-item>
+            <md-button confirm ng-click="$stCrudToolsCtrl.deleteFunction([cliente.id])">
+             <ng-md-icon icon="delete"></ng-md-icon>
+              Deletar
+             </md-button>
+        </md-menu-item>
+           <md-menu-item>
+              <md-button   button-info-ob  objeto="{{$stCrudToolsCtrl.item}}" >
+                <ng-md-icon icon="access_time"></ng-md-icon>
+                Histórico do item
+               </md-button>
+       </md-menu-item>
+      </md-menu-content>
+ </md-menu>

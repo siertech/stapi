@@ -1,0 +1,39 @@
+{
+  "name": "st-api",
+  "description": "api siertech",
+  "version": "3.3.4",
+  "keywords": [
+    "css",
+    "js",
+    "less",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "homepage": "www.siertech.com.br",
+  "main": [
+    "dist/js/st-api-lib-base.js",
+    "dist/js/st-api.js"
+  ],
+  "ignore": [
+    "/.*",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "node_modules",
+    "js/tests",
+    "test-infra"
+  ],
+  "authors": [
+    "Thomaz Reis Damasceno"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angularjs-social-login": "^2.6.1"
+  }
+}

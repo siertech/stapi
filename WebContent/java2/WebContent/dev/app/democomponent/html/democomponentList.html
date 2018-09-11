@@ -1,0 +1,49 @@
+﻿<meta charset="UTF-8" />
+<app-menu></app-menu>
+<md-card style="padding-top: 15px;">
+        <md-toolbar class="md-table-toolbar md-default">
+          <div layout="row" class="md-toolbar-tools"  layout-wrap>
+	           <div flex="20"  hide-xs md-hide-xs>
+				   <md-button class="add-button md-raised" ng-click="$democomponentListCtrl.data.openDetail()" class="md-raised">Cadastrar</md-button>
+		       </div>
+			   <st-filter  
+			         flex-xs="80" 
+			         flex="60"
+					 query-options = "$democomponentListCtrl.data.requestListParams"
+					 get-list = "$democomponentListCtrl.data.getList"
+					 filtros="$democomponentListCtrl.data.filtros"
+					>
+			   </st-filter>
+   			<view-chose flex="10" view-type="config.confs.viewType" ></view-chose>
+          </div>
+</md-toolbar>
+</md-card>
+	<float-button-add class="float-add-button" tooltip-label="Cadastrar novo democomponent" ng-click="$democomponentListCtrl.data.openDetail()" ></float-button-add>
+	<div layout="row" style="margin:8px">
+	    <md-progress-linear
+	          flex
+	          ng-if="$democomponentListCtrl.data.loading===true"
+	          md-mode="indeterminate">
+	    </md-progress-linear>
+	</div>
+ 
+    <democomponent-grid-view ng-show="config.confs.viewType=='grid'" ></democomponent-grid-view>
+ 	<democomponent-table-view  ng-show="config.confs.viewType=='table'" ></democomponent-table-view>
+	
+	<div ng-if="$democomponentListCtrl.data.objetos.length==0" class="col-lg-12">
+	    <p class="text-muted">Nenhum item encontrado</p>
+    </div>
+   
+    <st-filter-pagination
+	     total-itens="$democomponentListCtrl.data.totalItens" 
+	     itens-in-page="$democomponentListCtrl.data.objetos.length" 
+	     get-list="$democomponentListCtrl.data.getList" 
+	     query-options="$democomponentListCtrl.data.requestListParams"  >
+    </st-filter-pagination>
+    
+    
+    
+    
+    
+    
+    

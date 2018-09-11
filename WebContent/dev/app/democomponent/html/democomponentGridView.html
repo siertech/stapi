@@ -1,0 +1,26 @@
+<meta charset="UTF-8" />
+<div layout="column"  layout-wrap>
+   <div flex="50" flex-xs="100" flex-sm="50" ng-repeat="item in $democomponentListCtrl.data.objetos" >
+       <st-grid-item
+          icon="code" 
+          item="item" 
+          label="{{item._string.titulo}}"
+          delete-function="$democomponentListCtrl.data.deleteFunction([item.id])" 
+          open-detail="$democomponentListCtrl.data.openDetail(item)">
+	          <div flex>
+		              <html-compile html="item.content"></html-compile>
+		      </div>
+		      
+	      </div>
+          
+       </st-grid-item>
+	  </div>
+</div>
+
+
+ 
+
+ 
+
+   
+      

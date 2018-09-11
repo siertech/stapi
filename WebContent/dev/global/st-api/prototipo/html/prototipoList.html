@@ -1,0 +1,49 @@
+﻿<meta charset="UTF-8" />
+<md-card style="padding-top: 15px;">
+        <md-toolbar class="md-table-toolbar md-default">
+	          <div layout="row" class="md-toolbar-tools"  layout-wrap>
+		           <div flex="20"  hide-xs md-hide-xs>
+					   <md-button class="add-button md-raised" ng-click="$prototipoListCtrl.data.openDetail()" class="md-raised">Cadastrar</md-button>
+			       </div>
+				   <st-filter  
+				         flex-xs="80" 
+				         flex="60"
+						 query-options = "$prototipoListCtrl.data.requestListParams"
+						 get-list = "$prototipoListCtrl.data.getList"
+						 filtros="$prototipoListCtrl.data.filtros"
+						>
+				   </st-filter>
+	   			<view-chose flex="10" view-type="config.confs.viewType" ></view-chose>
+	          </div>
+         </md-toolbar>
+</md-card>
+
+ 
+
+	<float-button-add class="float-add-button" tooltip-label="Cadastrar novo prototipo" ng-click="$prototipoListCtrl.data.openDetail()" ></float-button-add>
+	<div layout="row" style="margin:8px">
+	    <md-progress-linear
+	          flex
+	          ng-if="$prototipoListCtrl.data.loading===true"
+	          md-mode="indeterminate">
+	    </md-progress-linear>
+	</div>
+	
+	<st-selected-items-actions 
+	   delete-function="$prototipoListCtrl.data.deleteFunction($prototipoListCtrl.data.getSelectedItemsIds())" 
+	   selected-items="$prototipoListCtrl.data.selectedItems">
+	</st-selected-items-actions>
+	 
+ 	<prototipo-grid-view ng-show="config.confs.viewType=='grid'" ></prototipo-grid-view>
+ 	<prototipo-table-view  ng-show="config.confs.viewType=='table'" ></prototipo-table-view>
+	
+	<div ng-if="$prototipoListCtrl.data.objetos.length==0">
+	    <p class="text-muted">Nenhum item encontrado</p>
+    </div>
+   
+    <st-filter-pagination
+	     total-itens="$prototipoListCtrl.data.totalItens" 
+	     itens-in-page="$prototipoListCtrl.data.objetos.length" 
+	     get-list="$prototipoListCtrl.data.getList" 
+	     query-options="$prototipoListCtrl.data.requestListParams"  >
+    </st-filter-pagination>

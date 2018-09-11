@@ -1,0 +1,9 @@
+<meta charset="UTF-8" />
+<md-nav-bar
+      md-no-ink-bar="disableInkBar"
+      md-selected-nav-item="activeTab"
+      nav-bar-aria-label="navigation links">
+      <md-nav-item ng-repeat="tab in tabs"  md-nav-click="alterarTab($index)" name="{{$index}}">
+         {{tab.label}}
+      </md-nav-item>
+ </md-nav-bar>

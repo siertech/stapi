@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <ul class="list-button-action-modal">
+     
+	  <li ng-show="vm.okAction">
+	     <button ng-disabled="vm.disableOkButton==true || vm.loadingOkAction==true" class="btn btn-action-modal ripple" ng-click="vm.okAction(this)">
+	           <i id="btn-ok-action"  class="fa {{vm.okActionIcon || 'fa-check'}}"></i>
+	           <span >{{vm.okActionLabel || 'SALVAR' |uppercase}}</span>
+	     </button>
+	  </li>
+	  
+	</ul>
+	<h4  class="modal-title"> 
+	    <a class="ripple"  ng-click="vm.callToCancelAction(vm)"  style="color: #FBF7F7;font-size:18px;padding:9px;"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+	    <strong>{{vm.titulo}}</strong>
+	</h4>
+</div>
+
+<div class="modal-body"  ng-transclude></div>
+<div class="row"></div>
+
+<div ng-if="vm.deleteAction && vm.item.id">
+    <vertical-space style="height:55px;"></vertical-space>
+	<div   class="button-mobile ripple" tooltip-enable="true" tooltip="Deletar este item" tooltip-placement="left">
+	  <a confirm="Tem certeza que deseja deletar este item?" ng-click="vm.deleteAction()" style="background-color:#e12a0a!important"><i class="fa fa-trash"></i></a>
+	</div>
+</div>
+
+
+
+
+
+ 
+
+			

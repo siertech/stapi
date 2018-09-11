@@ -1,0 +1,9 @@
+<meta charset="UTF-8" />
+<md-card ng-dblclick="$stGridItemCtrl.openDetail()" md-whiteframe="5">
+	<div layout="row" class="md-toolbar-tools">
+		<h2 md-truncate><ng-md-icon ng-if="$stGridItemCtrl.icon" icon="{{$stGridItemCtrl.icon}}"></ng-md-icon> {{$stGridItemCtrl.label}}</h2>
+	     <span flex></span>
+         <st-crud-tools  item="$stGridItemCtrl.item" delete-function="$stGridItemCtrl.deleteFunction()" open-detail="$stGridItemCtrl.openDetail()" ></st-crud-tools>
+    </div>
+    <div layout-padding ng-transclude ></div>
+</md-card>

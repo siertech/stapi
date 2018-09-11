@@ -1,0 +1,35 @@
+
+
+.st-auto-complete-place-holder{
+	
+	opacity: 0.6;
+}
+
+ .auto-complete-modal-busca>.modal-header{
+    height:75px;
+ }
+ 
+ .auto-complete-modal-busca>.modal-header .input-group{
+    width:100%;
+ }
+ 
+ .st-auto-complete-item-select {
+    padding: 2px 2px 0px;
+    border-width: 0 0 1px;
+    box-shadow: none;
+    border-color: #908e8e;
+    border-radius: 0px;
+    height: 30px;
+    background: none;
+    text-align:left;
+}
+
+.st-auto-complete-item-select:focus{
+    border-width: 0 0 2px;
+    box-shadow: none;
+    border-color: var(--primary-color);
+    padding: 2px 2px 0px;
+    height: 30px;
+    background: none;
+}
+ 

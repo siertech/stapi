@@ -1,0 +1,77 @@
+
+<div>
+<div layout="row">
+        <md-progress-linear
+	          flex
+	          ng-if="loading===true"
+	          md-mode="indeterminate">
+	    </md-progress-linear>
+</div>
+<div ng-show="false" layout="row">
+    <div ng-show="proj.data.length>0">
+    	<md-input-container>
+	        <label>Quantidade de itens</label>
+	        <md-select  ng-change="getDados()" ng-model="maxItens">
+	          <md-optgroup label="items">
+	              <md-option ng-value="3" >Max 3 itens</md-option>
+	              <md-option ng-value="5" >Max 5 itens</md-option>
+	              <md-option ng-value="10" >Max 10 itens</md-option>
+	              <md-option ng-value="20" >Max 20 itens</md-option>
+	              <md-option ng-value="30" >Max 30 itens</md-option>
+	              <md-option ng-value="0" >Todos</md-option>
+	          </md-optgroup>
+	        </md-select>
+	      </md-input-container>
+		
+	</div>
+	<span flex></span>
+	<div ng-show="proj.data.length>0">
+		<md-input-container>
+		        <label>Ordenação</label>
+		          <md-select  ng-change="getDados()"  ng-model="order" >
+		             <md-optgroup label="Ordenação">
+		                <md-option ng-value="'DESC'" >Maior >> Menor</md-option>
+		                <md-option ng-value="'ASC'" >Menor >> Maior</md-option>
+		             </md-optgroup>
+		           </md-select>
+		  </md-input-container>
+		
+	</div>
+</div>
+
+<div layout="row">
+  
+    <div flex  ng-if="proj.data.length>0 && proj.labels.length>4">
+        <canvas  class="chart chart-bar"
+			chart-options="chartOptions"
+			chart-colors="proj.colors"
+			chart-data="proj.data" chart-legend="true"
+			chart-labels="proj.labels">
+		 </canvas>
+	</div>
+
+
+<!--  
+<table class="table table-striped table-bordered" >
+    <tbody>
+         <tr ng-repeat="d in proj.data[0] track by $index">
+             <td style="font-size:15px!important"><i class="fa fa-list"></i> {{proj.labels[$index]}}</td>
+             <td style="font-size:15px!important"><strong> {{ proj.data[0][$index]}} </strong></td>
+         </tr>
+    </tbody>
+</table>
+-->
+
+	<div flex ng-if="proj.data.length>0 && proj.labels.length<=4" >
+	
+		<canvas  class="chart chart-doughnut" 
+		chart-options="chartOptions"
+		chart-colors="proj.colors"
+		chart-data="proj.data" chart-legend="true"
+		chart-labels="proj.labels">
+		 </canvas>
+	</div>
+</div>
+</div>
+
+

@@ -1,0 +1,63 @@
+<meta charset="UTF-8" />
+<div ng-show="$menuCtrl.data.showMenu" ng-controller="menuCtrl as $menuCtrl">
+		<md-toolbar md-truncate layout="row" class="md-toolbar-tools">
+		       <div class="md-toolbar-tools">
+			        <md-button ng-click="$menuCtrl.data.toggleSideNav()" class="md-icon-button" aria-label="Settings">
+			           <ng-md-icon icon="menu"></ng-md-icon> 
+			        </md-button>
+			        <md-divider></md-divider>
+			       <h2  md-truncate>Saat's Framework</h2>
+			        <span flex="10"></span>
+			        
+				     <st-breadcumb  hide show-gt-xs></st-breadcumb>
+				     <button-filial></button-filial>
+			      
+			        <span flex></span>
+			        
+			    </div>
+		 </md-toolbar>
+	    
+	     <md-sidenav 
+	          class="md-sidenav" 
+	          md-component-id="side-nav-principal"
+              md-disable-backdrop md-whiteframe="4">
+               
+              <md-toolbar layout="row">
+		          <div class="md-toolbar-tools">
+		              <h2>Opções</h2>
+		             <span flex></span>
+		            <md-button class="md-icon-button" aria-label="Close Side Panel" ng-click="$menuCtrl.data.toggleSideNav()">
+		              <md-tooltip>Fechar</md-tooltip>
+		               <ng-md-icon icon="close"></ng-md-icon> 
+		            </md-button>
+		          </div>
+		       </md-toolbar>
+			      
+			 <md-list class="menu-items">
+				  <md-list-item ng-repeat="item in $menuCtrl.data.menuItems" ng-click="$menuCtrl.data.changePath(item.path)">
+		                <div class="inset">
+			              <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+			            </div>
+				        <div class="inset">{{item.label}}
+				        </div>
+		          </md-list-item>
+		          <md-divider></md-divider>
+		          
+		          <md-list-item ng-click="$menuCtrl.data.openConfig()">
+		                <div class="inset">
+			              <ng-md-icon icon="settings"></ng-md-icon>
+			            </div>
+				        <div class="inset"> Configurações
+				        </div>
+		          </md-list-item>
+		          
+		          <md-list-item class="button-logout" ng-click="$menuCtrl.data.logOut()">
+		                <div class="inset">
+			              <ng-md-icon icon="logout"></ng-md-icon>
+			            </div>
+				        <div class="inset">Sair
+				        </div>
+		          </md-list-item>
+		     </md-list>
+	      </md-sidenav>
+</div>

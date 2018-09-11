@@ -1,0 +1,17 @@
+<meta charset="UTF-8" />
+<div layout="row"  layout-wrap flex >
+   <div flex="25" flex-xs="100" flex-sm="50" ng-repeat="item in $prototipoListCtrl.data.objetos" >
+       <st-grid-item
+          icon="code" 
+          item="item" 
+          label="{{item.titulo}}"
+          delete-function="$prototipoListCtrl.data.deleteFunction([item.id])" 
+          open-detail="$prototipoListCtrl.data.openDetail(item)">
+          
+       </st-grid-item>
+	  </div>
+</div>
+ 
+
+   
+      

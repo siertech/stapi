@@ -1,0 +1,36 @@
+<meta charset="UTF-8" />
+	
+	 <!--  
+	<div class="panel pivo-panel" ng-class="{'card-list-panel-par':vm.index%2!=0}">
+		<div class="panel-heading">
+			  <div class="pull-left card-list-label-pivo">
+			   <strong style="font-size:17px;"" uib-tooltip="{{vm.labelPivo}}">
+			    <i class="fa fa-{{vm.icon||'list'}}"></i>  {{vm.labelPivo|uppercase}}
+			    </strong>
+			  </div>
+			  
+			  <div ng-show="vm.hideButtons!=true" class="pull-right">
+			     
+			    
+			  </div>
+			  <div class="row"></div>		
+			  <div class="pivo-panel-separator"></div>
+		</div>
+		<div class="panel-body" ng-transclude>
+			
+		</div>
+	</div>
+	-->  
+	
+	 <md-card>
+	        <md-card-title>
+	          <md-card-title-text>
+	            <span class="md-headline">{{vm.labelPivo|uppercase}}</span>
+	          </md-card-title-text>
+	         </md-card-title>
+	         <div >
+	         </div>
+	        <md-card-actions layout="row" layout-align="end center">
+	           <crud-tools ob="vm.ob"  delete-function="vm.deleteFunction" edit-function="vm.editFunction" ></crud-tools>
+	        </md-card-actions>
+      </md-card>

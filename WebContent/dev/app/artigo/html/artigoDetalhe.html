@@ -1,0 +1,27 @@
+<meta charset="UTF-8" />
+
+<st-detalhe
+	   save-function ="$artigoDetalheCtrl.data.saveFunction($artigoDetalheCtrl.data.item)"
+	   delete-function = "$artigoDetalheCtrl.data.deleteFunction($artigoDetalheCtrl.data.item)"
+	   item = "$artigoDetalheCtrl.data.item"
+	   cancel-function = "$artigoDetalheCtrl.data.cancelFunction()"
+	   loading = "$artigoDetalheCtrl.data.loading"
+	   title  = "{{$artigoDetalheCtrl.data.item.titulo || 'Cadastro de novo Item'}}">
+	   
+	   <div layout="row" layout-wrap>
+			    <div flex="100" layout="row">
+		              <st-nav  flex="30" active-tab="$artigoDetalheCtrl.activeTab" tabs="[{label:'Informações', icon:'info'}, {icon:'eye',label:'Conteúdo'} ]"></st-nav>
+		         </div>
+		         <div flex="100">
+		             <md-card  ng-show="$artigoDetalheCtrl.activeTab==0">
+		                 <md-card-content>
+		                   <artigo-form ></artigo-form>
+		                 </md-card-content.>
+		             </md-card>
+					 
+					  <div ng-show="$artigoDetalheCtrl.activeTab==1">
+							<div simditor  ng-model="$artigoDetalheCtrl.data.item.content"></div>
+					  </div>
+				  </div>
+	   </div>
+</st-detalhe>

@@ -1,0 +1,24 @@
+.btn-option-card-list {
+	color:#8b8888!important;
+	font-size:25px;
+	padding: 0px 5px 0px 5px;
+	
+}
+
+.btn-option-card-list.onboarding-focus{
+	color: var(--secondary-color)!important;
+	animation-name: animation-onboarding-focus;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+.card-list-label-pivo{
+	white-space: nowrap;
+    width: 12.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-list-panel-par{
+	background-color:rgba(252, 251, 251, 0.79)
+}

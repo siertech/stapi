@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel='canonical' href='https://ceasaplus.com.br/'>
+<link rel='manifest' href='manifest.json'>
+<meta name='mobile-web-app-capable' content='yes'>
+<meta name="apple-mobile-web-app-status-bar-style"	content="black-translucent">
+<meta name="mobile-web-app-status-bar-style" content="black-translucent">
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='application-name' content='Ceasa Plus'>
+<meta name='apple-mobile-web-app-status-bar-style' content='black'>
+<meta name='apple-mobile-web-app-title' content='Ceasa Plus'>
+<link rel='icon sizes=192x192' href='icone.png'>
+<link rel='apple-touch-icon' href='icone.png'>
+<meta name='msapplication-TileImage' content='icone.png'>
+<meta name='msapplication-TileColor' content='#3f51b5'>
+<meta name='theme-color' content='#3f51b5'>
+<meta property='og:type' content='website'>
+<meta property='og:image' content='icone.png'>
+<meta property='og:url' content='https://www.ceasaplus.com.br/'>
+<meta property='og:description' content=''>
+<meta name='twitter:card' content='summary'>
+<meta name='twitter:url' content='https://www.ceasaplus.com.br//'>
+<meta name='twitter:title' content='Ceasa Plus'>
+<meta name='twitter:description' content='Ceasa Plus'>
+<meta name='twitter:image' content='icone.png'>
+<meta name='twitter:creator' content='@paul_kinlan'>
+<!--  -->
+<title></title>
+</head>
+  <span us-spinner spinner-key="spinner-1"></span>
+
+<body>
+   
+   <!-- Notificações exibidas através de stUtil.showMessage() -->
+   <div growl></div>
+	 
+    <!-- Splash Screen --> 
+	<div style="margin-top: 15%; text-align:center" class="splash" ng-cloak="">
+	    <img width="329px" src="splash.gif"/>
+	     <p id="text-loading">Carregando o sistema...</p>
+	</div>
+
+   <!-- Corpo da página -->
+	<div ng-cloak="">
+	   <ng-include src="'app/menu/html/menu.html'"></ng-include>
+	  	<div flex layout="row" layout-padding>
+	      <!-- Container #4 -->
+	      <md-content flex id="content" ng-view>
+	         	<test-user-button ng-show="(!testIsOpen || testIsOpen==false)"></test-user-button>  
+	      </md-content>
+		</div>
+	</div>
+</body>
+
+<!-- CSS do Framework -->
+<!-- build:css css/st-api.css -->
+<link href="global/lib/font-roboto/css/roboto.css"	rel="stylesheet">
+<link rel="stylesheet" href="global/angularPrint.css">
+<link href="global/lib/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" href="global/lib/angular-chart.css">
+<link href="global/st-api/st-card-list/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-grid-item/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-autocomplete/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-check-list/css/stCheckList.css" rel="stylesheet" />
+<link href="global/st-api/test-user/style/style.css" rel="stylesheet" />
+<link href="global/st-api/st-util/style/style.css" rel="stylesheet" />
+<link href="global/st-api/st-prototype/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-menu/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-input/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-pagination/css/style.css" rel="stylesheet" />
+<link href="global/st-api/st-filter/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="global/style.css">
+<link rel="stylesheet" rel="stylesheet" href="global/lib/angular-material-icons/angular-material-icons.css">
+<link href="global/lib/angular-material-data-table/md-data-table.css" rel="stylesheet"/>
+<link href="../bower_components/angular-resizable/src/angular-resizable.css" rel="stylesheet"/>
+
+<!-- endbuild -->
+
+<!-- build:css css/app.css -->
+
+<link href='app/artigo/css/style.css' />
+<link rel="stylesheet" type="text/css"  href="global/lib/simditor/simditor/styles/simditor.css"/>
+<link href='app/request/css/style.css' />
+
+<link href='app/versaoprototipo/css/style.css' />
+
+<link href='app/prototipo/css/style.css' />
+
+
+
+<link href='app/artigo/css/style.css' />
+<link href='app/democomponent/css/style.css' />
+<link href='app/cliente/css/style.css' />
+
+<link rel="stylesheet" type="text/css" href="global/lib/angular-material/angular-material.css">
+<link href="global/lib/angular-json-tree.css" rel="stylesheet" />
+<link href="global/lib/textAngular.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="global/lib/codemirror/codemirror.css">
+<link rel="stylesheet" type="text/css" href="global/lib/codemirror/theme/twilight.css">
+<!-- endbuild -->
+
+<!-- build:js js/app-base.js -->
+<!-- JQuery -->
+<script src="global/lib/jquery.min.js"></script>
+
+<!-- Angularjs e angularjs material -->
+<script src="global/lib/angular-1.6.9/angular.js"></script>
+<script src="global/lib/angular-1.6.9/angular-animate.min.js"></script>
+<script src="global/lib/angular-1.6.9/angular-aria.min.js"></script>
+<script src="global/lib/angular-1.6.9/angular-route.min.js"></script>
+<script src="global/lib/angular-1.6.9/angular-cookies.min.js" type="text/javascript"></script>
+<script src="global/lib/angular-1.6.9/angular-sanitize.min.js"></script>
+<script src="global/lib/angular-1.6.9/angular-messages.min.js"></script>
+<script src="global/lib/angular-material/angular-material.min.js"></script>
+
+<script src="global/lib/angular-youtube-embed.min.js"></script>
+<script src="global/lib/ng-device-detector.min.js"></script>
+<script type="text/javascript" src="global/lib/codemirror/codemirror.js"></script>
+<script type="text/javascript" src="global/lib/angular-ui-codemirror/ui-codemirror.js"></script>
+<script type="text/javascript" src="global/lib/codemirror/xml.js"></script>
+<script type="text/javascript" src="global/lib/codemirror/javascript.js"></script>
+<script src="global/lib/socket.io.js"></script>
+<script src="global/lib/ng-onboarding.js"></script>
+<script src="global/lib/angular-chrono.min.js"></script>
+<script src="global/lib/re-tree.min.js"></script>
+<script src="../bower_components/angular-json-tree/src/json-tree.js"></script>
+<script src="../bower_components/angularjs-social-login/angularjs-social-login.js"></script>
+<script src="../bower_components/angular-resizable/src/angular-resizable.js"></script>
+
+<!-- endbuild -->
+
+
+<script src="//app.helphero.co/embed/VeVceWXc6rk"></script>
+
+
+<!-- Libs-->
+<!-- build:js js/st-api-lib-base.js -->
+<script src="global/lib/lodash.js"></script>
+<script src="global/lib/jlinq.js"></script>
+<script src="global/lib/jquery-ui.js"></script>
+<script src="global/lib/date-picker-br.js"></script>
+<script src="global/lib/angular-locale_pt-br.js"></script>
+<script src="global/lib/Chart.js" type="text/javascript"></script>
+<script src="global/lib/angular-chart.js" type="text/javascript"></script>
+<script src="global/lib/angular-confirm.js" type="text/javascript"></script>
+<script src="global/lib/ngStorage.js"></script>
+<script src="global/lib/angular-filter.min.js"></script>
+<script src="global/lib/spin.js"></script>
+<script src="global/lib/angular-spinner.js"></script>
+<script src="global/lib/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+<script src="global/lib/angular-input-masks.js"></script>
+<script src="global/lib/angular-material-icons/angular-material-icons.js"></script>
+
+<!-- Angular  data-table -->
+<script type="text/javascript" src="global/lib/angular-material-data-table/md-data-table.js"></script>
+
+<!-- endbuild -->
+
+<!-- build:js js/st-api.js -->
+
+<!-- Basico -->
+<script src="js/base.js"></script>
+
+<!-- Prototipo -->
+ <script src='global/st-api/prototipo/js/prototipoController.js'></script>
+<script src='global/st-api/prototipo/js/prototipoDirective.js'></script>
+<script src='global/st-api/prototipo/js/prototipoFactory.js'></script>
+<script src='global/st-api/prototipo/js/prototipoRoute.js'></script>
+
+<!-- stChart -->
+<script src="global/st-api/st-chart/js/stChartController.js"></script>
+<script src="global/st-api/st-chart/js/stChartDirective.js"></script>
+<script src="global/st-api/st-chart/js/stChartFactory.js"></script>
+
+<!-- crudTools -->
+<script src="global/st-api/st-crud-tools/js/stCrudToolsController.js"></script>
+<script src="global/st-api/st-crud-tools/js/stCrudToolsDirective.js"></script>
+<script src="global/st-api/st-crud-tools/js/stCrudToolsFactory.js"></script>
+
+<!-- stSync  -->
+<script src="global/st-api/st-sync/js/stSyncFactory.js"></script>
+<script src="global/st-api/st-sync/js/stSyncDirective.js"></script>
+
+<!-- stUtil -->
+<script src="global/st-api/st-util/factory/stUtilFactory.js"></script>
+<script src="global/st-api/st-util/factory/stUtilFactory.js"></script>
+<script src="global/st-api/st-util/factory/onlineStatusFactory.js"></script>
+<script src="global/st-api/st-util/factory/dateUtilFactory.js"></script>
+<script src="global/st-api/st-util/directive/stUtilDirective.js"></script>
+<script src="global/st-api/st-util/directive/mobileTabsDirective.js"></script>
+<script src="global/st-api/st-util/directive/stSelectDirective.js"></script>
+<script src="global/st-api/st-util/controller-module/stUtilController.js"></script>
+<!-- Fim stUtil -->
+
+<!-- stInput -->
+<script src="global/st-api/st-input/js/stInputDirective.js"></script>
+<script src="global/st-api/st-input/js/stInputFactory.js"></script>
+
+<!-- checkList-->
+<script src="global/st-api/st-check-list/js/stCheckListController.js"></script>
+<script src="global/st-api/st-check-list/js/stCheckListDirective.js"></script>
+
+<!-- stBreadcumb -->
+<script src="global/st-api/st-breadcumb/js/stBreadcumbDirective.js"></script>
+
+<!-- stMenu -->
+<script src="global/st-api/st-menu/js/stMenuController.js"></script>
+<script src="global/st-api/st-menu/js/stMenuConfig.js"></script>
+<script src="global/st-api/st-menu/js/stMenuFactory.js"></script>
+
+<!-- stControl -->
+<script src="global/st-api/st-control/js/stControlController.js"></script>
+
+<!-- stService -->
+<script src="global/st-api/st-service/js/stServiceFactory.js"></script>
+
+<!-- appLogin -->
+<script src="global/st-api/st-login/js/stLoginFactory.js"></script>
+<!-- FIM appLogin -->
+
+<!--stFilial -->
+<script src="global/st-api/st-filial/js/buttonFilialController.js"></script>
+<script src="global/st-api/st-filial/js/stFilialFactory.js"></script>
+<script src="global/st-api/st-filial/js/stFilialDirective.js"></script>
+<!-- Fim appFilial -->
+
+<!-- Cadastros -->
+<script
+	src="global/st-api/cadastros/controller-route/cadastrosController.js"></script>
+<script src="global/st-api/cadastros/cadastrosConfig.js"></script>
+<script src="global/st-api/cadastros/factory/cadastrosUtilFactory.js"></script>
+<!-- Fim Cadastros -->
+
+<!-- appConfig -->
+<script src="global/st-api/st-config/js/stConfigFactory.js"></script>
+<script src="global/st-api/st-config/js/stConfigDirective.js"></script>
+<!-- FIM config -->
+
+<!-- stPagination -->
+<script src="global/st-api/st-pagination/js/stPaginationDirective.js"></script>
+
+<!-- stStringCheck-->
+<script src="global/st-api/st-string-check/js/stStringCheckDirective.js"></script>
+
+<!-- stStringChip-->
+<script src="global/st-api/st-string-chip/js/stStringChipDirective.js"></script>
+
+<!-- stLayout -->
+<script src="global/st-api/st-layout/js/stLayoutDirective.js"></script>
+
+<!-- stFilter -->
+<script src="global/st-api/st-filter/js/stFilterDirective.js"></script>
+<script src="global/st-api/st-filter/js/stFilterController.js"></script>
+<!-- FIm stFilterMap-->
+
+<!-- autoComplete -->
+<script src="global/st-api/st-autocomplete/stAutoComplete.js"></script>
+<script src="global/st-api/st-autocomplete/js/stAutoCompleteDirective.js"></script>
+<script src="global/st-api/st-autocomplete/js/stAutoCompleteController.js"></script>
+
+<!-- FIM autoComplete -->
+
+<!-- stModal -->
+<script src="global/st-api/st-modal/js/stModalDirective.js"></script>
+<!-- FIM stModal -->
+
+<!-- stSelectedItemsActions-->
+<script src="global/st-api/st-selected-items-actions/js/stSelectedItemsActionsDirective.js"></script>
+
+<!-- stNav -->
+<script src="global/st-api/st-nav/js/stNavDirective.js"></script>
+
+<!-- stTable-->
+<script src="global/st-api/st-table/js/stTableDirective.js"></script>
+
+<!-- stDetalhe-->
+<script src="global/st-api/st-detalhe/js/stDetalheDirective.js"></script>
+
+<!-- stGridItem-->
+<script src="global/st-api/st-grid-item/js/stGridItemDirective.js"></script>
+
+<!-- stCardList -->
+<script src="global/st-api/st-card-list/js/stCardListDirective.js"></script>
+<script src="global/st-api/st-card-list/js/stCardListController.js"></script>
+
+<!-- appPrototype -->
+<script src="global/st-api/st-prototype/js/stPrototypeRoute.js"></script>
+
+<!-- test-user-->
+<script src="global/st-api/st-test-user/js/stTestUserDirective.js"></script>
+<script src="global/st-api/st-test-user/js/stTestUserRoute.js"></script>
+
+<!--  stTutorial -->
+<script src="global/st-api/st-tutorial/js/stTutorialFactory.js"></script>
+<script src="global/st-api/st-tutorial/js/stTutorialDirective.js"></script>
+<!-- Fim stTutorial -->
+
+<!-- endbuild -->
+
+<!-- build:js js/app.js -->
+
+<!-- Artigo -->
+ <script src='app/artigo/js/artigoController.js'></script>
+<script src='app/artigo/js/artigoDirective.js'></script>
+<script src='app/artigo/js/artigoFactory.js'></script>
+<script src='app/artigo/js/artigoRoute.js'></script>
+
+
+
+<!-- Arquivos de configuracao -->
+<script src="app-config.js"></script>
+
+
+<script src='global/lib/simditor/simple-module/lib/module.js'></script>
+<script src='global/lib/simditor/simple-hotkeys/lib/hotkeys.js'></script>
+<script src='global/lib/simditor/simditor/lib/simditor.js'></script>
+<script src='global/lib/simditor/ng-simditor/dist/js/ng-simditor.js'></script>
+<script src='global/lib/simditor/simditor-i18n.js'></script>
+
+
+<!-- Request -->
+ <script src='app/request/js/requestController.js'></script>
+<script src='app/request/js/requestDirective.js'></script>
+<script src='app/request/js/requestFactory.js'></script>
+<script src='app/request/js/requestRoute.js'></script>
+
+
+<!-- VersaoPrototipo -->
+ <script src='app/versaoprototipo/js/versaoprototipoController.js'></script>
+<script src='app/versaoprototipo/js/versaoprototipoDirective.js'></script>
+<script src='app/versaoprototipo/js/versaoprototipoFactory.js'></script>
+<script src='app/versaoprototipo/js/versaoprototipoRoute.js'></script>
+
+
+
+<!-- DemoComponent -->
+ <script src='app/democomponent/js/democomponentController.js'></script>
+<script src='app/democomponent/js/democomponentDirective.js'></script>
+<script src='app/democomponent/js/democomponentFactory.js'></script>
+<script src='app/democomponent/js/democomponentRoute.js'></script>
+
+<!-- Menu -->
+<script src="app/menu/js/menuController.js"></script>
+
+<!-- Cliente -->
+ <script src='app/cliente/js/clienteController.js'></script>
+<script src='app/cliente/js/clienteDirective.js'></script>
+<script src='app/cliente/js/clienteFactory.js'></script>
+<script src='app/cliente/js/clienteRoute.js'></script>
+
+<!-- teste -->
+ <script src='app/teste/js/testeController.js'></script>
+<script src='app/teste/js/testeDirective.js'></script>
+<script src='app/teste/js/testeFactory.js'></script>
+<script src='app/teste/js/testeRoute.js'></script>
+
+
+<!-- Login no sistema -->
+<script src="app/login/js/changePasswordController.js"></script>
+<script src="app/login/js/loginRoute.js"></script>
+<script src="app/login/js/loginController.js"></script>
+<script src="app/inicio/js/inicioController.js"></script>
+<script src="app/inicio/js/inicioConfig.js"></script>
+
+<!-- endbuild -->
+
+<script src="js/st-api-templates.js"></script>
+
+
+<script src="js/app-templates.js"></script>
+
+<script id="codePrototipo">
+</script>
+<script>
+
+  var html = document.getElementsByTagName('html')[0];
+  var body = document.getElementsByTagName('body')[0];
+  "stapi"
+  setTimeout(function() {
+	  try{
+	    html.setAttribute('ng-app', "stapiApp");
+	    body.setAttribute('style', '');
+	    angular.bootstrap(html, ['ng', "stapiApp"]);
+	  }catch(e){
+		  window.alert("Ocorreu um erro ao carregar a página");
+		  console.log(e);
+	  }
+  }, 30);
+ window.inicioCarregamento = new Date().getTime();
+</script>
+
+
+</html>

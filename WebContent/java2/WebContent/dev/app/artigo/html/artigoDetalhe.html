@@ -1,0 +1,16 @@
+<meta charset="UTF-8" />
+
+<st-detalhe
+	   save-function ="$artigoDetalheCtrl.data.saveFunction($artigoDetalheCtrl.data.item)"
+	   delete-function = "$artigoDetalheCtrl.data.deleteFunction($artigoDetalheCtrl.data.item)"
+	   item = "$artigoDetalheCtrl.data.item"
+	   cancel-function = "$artigoDetalheCtrl.data.cancelFunction()"
+	   loading = "$artigoDetalheCtrl.data.loading"
+	   title  = "{{$artigoDetalheCtrl.data.item.titulo || 'Cadastro de novo Item'}}">
+	   
+	   <st-nav active-tab="$artigoDetalheCtrl.activeTab" tabs="[{label:'Informações', icon:'info'}, {icon:'eye',label:'Conteúdo'} ]"></st-nav>
+	   <artigo-form ng-show="$artigoDetalheCtrl.activeTab==0"></artigo-form>
+	     <div ng-show="$artigoDetalheCtrl.activeTab==1">
+			<div simditor  ng-model="$artigoDetalheCtrl.data.item.content"></div>
+	     </div>
+</st-detalhe>

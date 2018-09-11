@@ -1,0 +1,12 @@
+.artigo-content p{
+    font-size:17px;
+    color: #494949;
+    letter-spacing: -0.47px;
+    
+}
+
+pre, pre>p{
+    font-size:14px!important;
+    font-family: Roboto;
+    
+}

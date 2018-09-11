@@ -1,0 +1,71 @@
+
+
+.dndPlaceholder{
+	
+	position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    height:19px;
+}
+
+.st-check-list-item{
+	list-style: none;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.st-check-list ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+ 
+ 
+ .st-check-list-no-items {
+   height: 100px; 
+   border: 1px dotted;
+   padding: 15px!important;
+   
+ }
+.st-check-list ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.st-check-list ul[dnd-list] .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 22px;
+    margin-bottom: 5px;
+    margin-top: -9px;
+}
+
+.st-check-list ul[dnd-list] li {
+   
+    display: block;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+.st-check-list ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+

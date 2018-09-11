@@ -1,0 +1,24 @@
+<meta charset="UTF-8" />
+<div layout="row" layout-wrap>
+    <div flex="100" layout="column">
+      <div>
+        <fieldset class="demo-fieldset" >
+          <legend class="demo-legend">{{ ctrl.titulo}} </legend>
+          <div layout="row" layout-wrap flex>
+          <div flex-xs flex="50">
+            <md-checkbox aria-label="Select All"
+                         ng-checked="ctrl.isChecked()"
+                         md-indeterminate="ctrl.isIndeterminate()"
+                         ng-click="ctrl.toggleAll()">
+              <span ng-if="ctrl.isChecked()">Des-</span>Selecionar todos
+            </md-checkbox>
+          </div>
+            <div style="padding-left: 30px;" class="demo-select-all-checkboxes" flex="100" ng-repeat="item in ctrl.items">
+              <md-checkbox ng-checked="ctrl.exists(item.attr, ctrl.selected)" ng-click="ctrl.toggle(item.attr, ctrl.selected)">
+               {{ item.label }}
+              </md-checkbox>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div

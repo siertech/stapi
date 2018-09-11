@@ -1,0 +1,17 @@
+<meta charset="UTF-8" />
+<div layout="row"  layout-wrap flex >
+   <div flex="25" flex-xs="100" flex-sm="50" ng-repeat="item in $artigoListCtrl.data.objetos" >
+       <st-grid-item
+          icon="text_format" 
+          item="item" 
+          label="{{item.titulo}}"
+          delete-function="$artigoListCtrl.data.deleteFunction([item.id])" 
+          open-detail="$artigoListCtrl.data.openDetail(item)">
+          
+       </st-grid-item>
+	  </div>
+</div>
+ 
+
+   
+      

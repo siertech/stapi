@@ -1,0 +1,50 @@
+﻿<meta charset="UTF-8" />
+<md-card style="padding-top: 15px;">
+        <md-toolbar class="md-table-toolbar md-default">
+	          <div layout="row" class="md-toolbar-tools"  layout-wrap>
+		           <div flex="20"  hide-xs md-hide-xs>
+					   <md-button class="add-button md-raised" ng-click="$artigoListCtrl.data.openDetail()" >
+					   <ng-md-icon icon="add"></ng-md-icon>
+					      Cadastrar
+					    </md-button>
+			       </div>
+				   <st-filter  
+				         flex-xs="80" 
+				         flex="60"
+						 query-options = "$artigoListCtrl.data.requestListParams"
+						 get-list = "$artigoListCtrl.data.getList"
+						 filtros="$artigoListCtrl.data.filtros"
+						>
+				   </st-filter>
+	   			<view-chose flex="10" view-type="config.confs.viewType" ></view-chose>
+	          </div>
+         </md-toolbar>
+</md-card>
+
+	<float-button-add class="float-add-button" tooltip-label="Cadastrar novo artigo" ng-click="$artigoListCtrl.data.openDetail()" ></float-button-add>
+	<div layout="row" style="margin:8px">
+	    <md-progress-linear
+	          flex
+	          ng-if="$artigoListCtrl.data.loading===true"
+	          md-mode="indeterminate">
+	    </md-progress-linear>
+	</div>
+	
+	<st-selected-items-actions 
+	   delete-function="$artigoListCtrl.data.deleteFunction($artigoListCtrl.data.getSelectedItemsIds())" 
+	   selected-items="$artigoListCtrl.data.selectedItems">
+	</st-selected-items-actions>
+	 
+ 	<artigo-grid-view ng-show="config.confs.viewType=='grid'" ></artigo-grid-view>
+ 	<artigo-table-view  ng-show="config.confs.viewType=='table'" ></artigo-table-view>
+	
+	<div ng-if="$artigoListCtrl.data.objetos.length==0">
+	    <p class="text-muted">Nenhum item encontrado</p>
+    </div>
+   
+    <st-filter-pagination
+	     total-itens="$artigoListCtrl.data.totalItens" 
+	     itens-in-page="$artigoListCtrl.data.objetos.length" 
+	     get-list="$artigoListCtrl.data.getList" 
+	     query-options="$artigoListCtrl.data.requestListParams"  >
+    </st-filter-pagination>

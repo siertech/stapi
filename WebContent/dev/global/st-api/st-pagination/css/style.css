@@ -1,0 +1,10 @@
+/*st-pagination */
+.st-pagination {
+	font-size: 19px;
+	text-align: center;
+}
+
+.st-pagination span {
+	padding-left: 9px;
+	padding-right: 9px;
+}

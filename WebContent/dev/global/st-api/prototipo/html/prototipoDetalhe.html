@@ -1,0 +1,86 @@
+<meta charset="UTF-8" />
+<div layout="row" layout-padding layout-wrap>
+       <div flex="50">
+          <st-nav active-tab="$prototipoDetalheCtrl.activeTab"  tabs="[{icon:'code', label:'Código'}, {label:'Design', icon:'ye'}, {label:'Comparar versões', icon:'compare_arrows'}]" </st-nav>
+      </div>
+      <div flex="30">
+	         <prototipo-form></prototipo-form>
+	  </div>
+	  <md-input-container  flex="20" ng-show="$prototipoDetalheCtrl.versoesPrototipo.length>1">
+		  <label>Versão</label>
+		  <md-select ng-model="$prototipoDetalheCtrl.versaoPrototipo">
+		    <md-option ng-value="versao" ng-repeat="versao in $prototipoDetalheCtrl.versoesPrototipo">{{ versao.label }} ({{versao.dataCadastro| date: 'dd/MM/yyyy' }})</md-option>
+		  </md-select>
+	  </md-input-container>
+  </div>
+<div ng-if="$prototipoDetalheCtrl.activeTab==0"  layout="row" resizable r-directions="['bottom']" r-flex="true">
+                <section flex    id="one" resizable r-directions="['']" r-flex="true">
+                    <md-card>
+                        <md-card-title>
+                             <p>HTML</p>
+                       </md-card-title>
+                       <md-card-content>
+                              <textarea ui-codemirror="{
+                              lineNumbers: true,
+                              theme:'twilight',
+                              mode: 'xml',
+
+                            }" 
+                           ng-model="$prototipoDetalheCtrl.versaoPrototipo.codigo"
+                            >
+                        </textarea>
+                      </md-card-content>
+                    </md-card>
+                </section>
+                <section   resizable r-directions="['left']" r-flex="true">
+                   <md-card>
+                       <md-card-title>
+                              <p>CSS</p>
+                       </md-card-title>
+                       <md-card-content>
+                         <textarea ui-codemirror="{
+					      lineNumbers: true,
+					      theme:'twilight',
+					      mode: 'css',
+					     
+					    }" 
+					   ng-model="$prototipoDetalheCtrl.versaoPrototipo.cssContent"
+					    >
+				    </textarea>
+                      </md-card-content>
+                    </md-card>
+                </section>
+              
+</div>
+
+<div  ng-show="$prototipoDetalheCtrl.activeTab==1"  id="htmlContent" >
+      
+</div>
+
+
+  <div layout="row">
+
+   <md-button ng-click="$prototipoDetalheCtrl.salvar($prototipoDetalheCtrl.versaoPrototipo)" class="md-primary md-raised">
+         <ng-md-icon icon="save"></ng-md-icon>
+         Salvar protótipo
+   </md-button>
+   <md-button ng-hide="!$prototipoDetalheCtrl.versaoPrototipo.id"   ng-click="$prototipoDetalheCtrl.salvarComoNovaVersao($prototipoDetalheCtrl.versaoPrototipo)" class="md-accent md-raised">
+        <ng-md-icon icon="add_box"></ng-md-icon>
+       Salvar como nova versão
+   </md-button>
+   <md-button href="#/prototipo" class="md-primary">
+       <ng-md-icon icon="list"></ng-md-icon>
+      Ir para Lista de protótipos
+   </md-button>
+   <md-button confirm ng-hide="$prototipoDetalheCtrl.versoesPrototipo.length<2" ng-click="$prototipoDetalheCtrl.deletarVersao($prototipoDetalheCtrl.versaoPrototipo)"  >
+	       <ng-md-icon icon="delete_forever"></ng-md-icon>
+	       Deletar versão
+   </md-button>
+   <md-button confirm class="md-warn" ng-hide="!$prototipoDetalheCtrl.versaoPrototipo.id"  ng-click="$prototipoDetalheCtrl.deletarPrototipo($prototipoDetalheCtrl.versaoPrototipo)"  >
+	       <ng-md-icon icon="delete_forever"></ng-md-icon>
+	       Deletar protótipo
+   </md-button>
+  </div>
+  
+
+          

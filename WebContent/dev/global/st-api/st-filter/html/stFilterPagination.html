@@ -1,0 +1,32 @@
+<meta charset="UTF-8" />
+<div layout="row" layout-padding layout-align="center" ng-hide="vm.itensInPage==0 && vm.queryOptions.pagina==0" class="st-pagination">
+       
+      <!-- Paginação -->
+		<div  flex>
+		    <p class="text-muted text-small text-center">Exibindo <strong>{{vm.itensInPage}}</strong> de  <strong>{{vm.totalItens}}</strong></p>
+			<md-card layout="row" layout-align="center center">
+		
+			        <md-button aria-label="" class="md-icon-button"  ng-click="vm.setPagina(0)" ng-disabled="vm.queryOptions.pagina==0" >
+				        <md-tooltip md-direction="top">Primeira Página</md-tooltip>
+				        <ng-md-icon icon="first_page"></ng-md-icon> 
+				    </md-button>
+			        
+			        <md-button aria-label="" class="md-icon-button"  ng-disabled="vm.queryOptions.pagina==0" ng-click="vm.setPagina(vm.queryOptions.pagina -1)"  >
+				        <md-tooltip md-direction="top">Página Anterior</md-tooltip>
+				        <ng-md-icon icon="navigate_before"></ng-md-icon> 
+			        </md-button>
+			        <span>Página {{vm.queryOptions.pagina +1}}</span>
+                    
+                    <md-button aria-label="" class="md-icon-button"   ng-disabled="! ( (vm.itensInPage > 0 ) && ( ((vm.queryOptions.pagina+1) * vm.queryOptions.maxItensPerPage) < vm.totalItens ))" ng-click="vm.setPagina(vm.queryOptions.pagina +1)"  >
+				         <md-tooltip md-direction="top">Próxima Página</md-tooltip>
+				        <ng-md-icon icon="navigate_next"></ng-md-icon> 
+			        </md-button>
+			        
+			         <md-button id="st-pagination-refresh-button" aria-label="" class="md-icon-button" ng-click="vm.setPagina(vm.queryOptions.pagina)"   >
+				         <md-tooltip md-direction="top">Atualizar Página</md-tooltip>
+				        <ng-md-icon icon="refresh"></ng-md-icon> 
+			        </md-button>
+			     </md-card>
+			 </div>
+		</div>
+</div>

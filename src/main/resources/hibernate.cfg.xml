@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+	
+    <property name = "connection.username">root</property>
+    <property name = "connection.password">leghacy123</property>
+    
+    
+	<mapping class="com.siertech.stapi.cliente.Cliente" />
+	<mapping class="com.siertech.stapi.pessoa.Pessoa" />
+	<mapping class="com.siertech.stapi.operadorsistema.OperadorSistema" />
+    <mapping class="com.siertech.stapi.config.Config" />
+	<mapping class="com.siertech.stapi.usersystem.UserSystem" />
+	<mapping class="com.siertech.stapi.filial.Filial" />
+	<mapping class="com.siertech.stapi.estadoscidades.Estado" />
+	<mapping class="com.siertech.stapi.estadoscidades.Cidade" />
+	<mapping class="com.siertech.stapi.opcao.Opcao" />
+	<mapping class="com.siertech.stapi.projecao.Projecao" />
+	<mapping class="com.siertech.stapi.teste.TestDefinition" />
+	<mapping class="com.siertech.stapi.teste.TestUser" />
+	<mapping class="democomponent.DemoComponent" />
+		<mapping class="artigo.Artigo" />
+	
+	<mapping class="com.siertech.stapi.prototipo.Prototipo" />
+	<mapping class="com.siertech.stapi.versaoprototipo.VersaoPrototipo" />
+	<mapping class="request.Request" />
+</session-factory>
+	
+</hibernate-configuration>

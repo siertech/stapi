@@ -1,0 +1,27 @@
+<form ng-cloak class="st-detalhe-content">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 md-truncate>{{$stDetalheCtrl.title}}</h2>
+        <span flex></span>
+        <md-button class="st-detallhe-cancel-button md-icon-button" ng-click="$stDetalheCtrl.cancelFunction()">
+             <ng-md-icon icon="close"></ng-md-icon> 
+        </md-button>
+      </div>
+    </md-toolbar>
+  	<md-dialog-content>
+        <div class="md-dialog-content" ng-transclude>
+       </div>
+    </md-dialog-content>
+	<md-dialog-actions   layout="row">
+      <md-button class="md-raised md-warn st-detalhe-delete-button" ng-if="$stDetalheCtrl.item.id" confirm ng-disabled="$stDetalheCtrl.loading==true"  ng-click="$stDetalheCtrl.deleteFunction()"  >
+	      <ng-md-icon icon="delete"></ng-md-icon>
+	       Deletar
+      </md-button>
+      <md-button  class="md-raised md-primary st-detalhe-save-button"  ng-disabled="$stDetalheCtrl.loading==true" ng-click="$stDetalheCtrl.saveFunction()"  >
+          <ng-md-icon icon="check_circle"></ng-md-icon>
+          Salvar
+      </md-button>
+    </md-dialog-actions>
+</form>
+    
+ 

@@ -1,0 +1,123 @@
+<div class="st-check-list">
+<div layout="row">
+
+ 
+    <md-button  ng-show="vm.objetos.length>0 && vm.hideDeleteAll != true" confirm="Tem certeza que deseja deletar todos os itens?" ng-click="vm.deleteAll()">
+        <ng-md-icon icon="delete"></ng-md-icon>
+        Deletar todos os itens
+    </md-button>
+</div>
+
+<ul dnd-list="vm.objetos"  ng-class="{'st-check-list-no-items': vm.objetos.length==0 && vm.showBorderNoItems==true}">
+    
+    <li
+    class="st-check-list-item"
+    id="item-index-{{$index}}"
+    ng-repeat="item in vm.objetos"
+    dnd-draggable="item"
+    dnd-moved="vm.objetos.splice($index, 1);"
+    dnd-dragend ="vm.dragEnd()"
+    dnd-effect-allowed="move"
+    dnd-selected="vm.selectedItem =  item"
+    ng-class="{'selected': vm.selectedItem== item}"
+    >
+   
+    <div layout="row">
+	    <md-checkbox ng-if="vm.hideCheckbox==false || !vm.hideCheckbox"  class="st-check-list-check"  ng-model="item[vm.attr]" ng-change="vm.changeChecked(item)" ng-true-value="{{vm.trueValue}}"  ng-false-value="{{vm.falseValue}}" >
+	     	    <label ng-click="$event.stopPropagation()"   class="st-check-list-label" >  {{item[vm.attrLabel]}}</label>
+	    </md-checkbox>
+	    <label ng-if="vm.hideCheckbox==true"   ng-click="$event.stopPropagation()"   class="st-check-list-label" >  {{item[vm.attrLabel]}}</label>
+         <span flex></span>
+	     <md-menu>
+      <md-button aria-label="Opções" class="md-icon-button" ng-click="vm.openMenu($event, $mdMenu)">
+          <ng-md-icon icon="{{$stCrudToolsCtrl.icon || 'more_vert'}}"></ng-md-icon>
+      </md-button>
+      <md-menu-content>
+	       <md-menu-item>
+		        <md-button class="st-check-list-item-edit-column" ng-click="vm.editItem($event, item)">
+		            <ng-md-icon icon="mode_edit"></ng-md-icon>
+		            Editar
+		          </md-button>
+	       </md-menu-item>
+	       <md-menu-item>
+	            <md-button confirm ng-click="vm.deleteFunction(item, $index)">
+	             <ng-md-icon icon="delete"></ng-md-icon>
+	              Deletar
+	             </md-button>
+	        </md-menu-item>
+	           
+	      </md-menu-content>
+	 </md-menu>
+    </div>
+    </li>
+</ul>
+
+<md-list ng-hide="vm.hideAdd==true" >
+   <md-list-item>
+	    <input style="height: 25px;padding: 5px;"  ng-focus="vm.editing=true" ng-class="{'checklist-new-item': vm.editing!=true}" ng-model="vm.newItem" placeholder="Adicionar item..."/>
+	</md-list-item>
+	<md-list-item >
+	     <div ng-if="vm.editing==true">
+		   <md-button class="md-accent md-raised" ng-click="vm.addItem(vm.newItem);vm.editing=false" >Adicionar item</md-button>
+		   <a class="text-muted" ng-click="vm.editing=false;vm.newItem=''" style="margin:5px;"><i class="fa fa-times"></i></a>
+		</div>
+	</md-list-item>
+</md-list>
+</div>
+
+<!--
+<ul dnd-list="vm.list">
+    <li
+    class="st-check-list-item"
+    id="item-index-{{$index}}"
+    ng-repeat="item in vm.list"
+    dnd-draggable="item"
+    dnd-moved="vm.list.splice($index, 1);"
+    dnd-dragend ="vm.dragEnd()"
+    dnd-effect-allowed="move"
+    dnd-selected="vm.selectedItem =  item"
+    ng-class="{'selected': vm.selectedItem== item}"
+    >
+    <div layout="row">
+	    <md-checkbox class="st-check-list-check"  ng-model="vm.list[$index].model" ng-change="vm.change($index)" ng-true-value="{{vm.trueValue}}"  ng-false-value="{{vm.falseValue}}" >
+	     	    <label ng-click="$event.stopPropagation()"   class="st-check-list-label" > {{vm.list[$index].label}}</label>
+	    </md-checkbox>
+         <span flex></span>
+	     <md-menu>
+      <md-button aria-label="Opções" class="md-icon-button" ng-click="vm.openMenu($event, $mdMenu)">
+          <ng-md-icon icon="{{$stCrudToolsCtrl.icon || 'more_vert'}}"></ng-md-icon>
+      </md-button>
+      <md-menu-content>
+	       <md-menu-item>
+		        <md-button class="st-check-list-item-edit-column" ng-click="vm.editItem($event, item)">
+		            <ng-md-icon icon="mode_edit"></ng-md-icon>
+		            Editar
+		          </md-button>
+	       </md-menu-item>
+	       <md-menu-item>
+	            <md-button confirm ng-click="vm.deleteFunction(item)">
+	             <ng-md-icon icon="delete"></ng-md-icon>
+	              Deletar
+	             </md-button>
+	        </md-menu-item>
+	           
+	      </md-menu-content>
+	 </md-menu>
+    </div>
+    </li>
+</ul>
+
+<md-list>
+   <md-list-item>
+	    <input style="height: 25px;padding: 5px;"  ng-focus="vm.editing=true" ng-class="{'checklist-new-item': vm.editing!=true}" ng-model="vm.newItem" placeholder="Adicionar item..."/>
+	</md-list-item>
+	<md-list-item>
+	     <div ng-if="vm.editing==true">
+		   <md-button class="md-accent md-raised" ng-click="vm.addItem(vm.newItem);vm.editing=false" >Adicionar item</md-button>
+		   <a class="text-muted" ng-click="vm.editing=false;vm.newItem=''" style="margin:5px;"><i class="fa fa-times"></i></a>
+		</div>
+	</md-list-item>
+</md-list>
+</div>
+  -->
+

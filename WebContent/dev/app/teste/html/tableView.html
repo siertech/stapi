@@ -1,0 +1,18 @@
+﻿<meta charset="UTF-8" />
+<panel>
+<table class="table table-hover">
+		    <thead>
+		      <tr>
+
+		        <th></th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="ob in vm.objetos" class="generic-transition">
+                                    <!-- <td>{{ob._string.}}</td> -->
+		        <td><crud-tools ob="ob"  delete-function="vm.deleteFunction" edit-function="vm.editFunction" ></crud-tools></td>
+		      </tr>
+		    </tbody>
+	</table>   
+      
+</panel>

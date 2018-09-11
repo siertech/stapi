@@ -1,0 +1,14 @@
+com.siertech.stapi.config
+com.siertech.stapi.crud
+com.siertech.stapi.database
+com.siertech.stapi.estadoscidades
+com.siertech.stapi.filial
+com.siertech.stapi.model
+com.siertech.stapi.movimentacao
+com.siertech.stapi.operadorsistema
+com.siertech.stapi.pessoa
+com.siertech.stapi.security
+com.siertech.stapi.system
+com.siertech.stapi.transactional
+com.siertech.stapi.usersystem
+com.siertech.stapi.util

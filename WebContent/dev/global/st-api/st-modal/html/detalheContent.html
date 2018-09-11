@@ -1,0 +1,31 @@
+
+<form ng-cloak class="st-detalhe-content">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Mango (Fruit)</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="$stDetalheCtrl.cancelFunction()">
+             <ng-md-icon icon="close"></ng-md-icon> 
+        </md-button>
+      </div>
+    </md-toolbar>
+  
+  
+    <md-dialog-content>
+      <div class="md-dialog-content" ng-transclude>
+        
+        
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <md-button  ng-click="$stDetalheCtrl.deleteFunction($stDetalheCtrl.item)" class="md-raised md-warn" >
+	      <i class="material-icons">delete</i>
+	       Deletar
+      </md-button>
+      <md-button ng-click="$stDetalheCtrl.parent.saveFunction($stDetalheCtrl.parent.item)"  class="md-raised md-primary" >
+          <i class="material-icons">check_circle</i>
+          Salvar
+      </md-button>
+    </md-dialog-actions>
+  </form>

@@ -1,0 +1,21 @@
+<meta charset="UTF-8" />
+<md-menu class="st-breadcumb" >
+      <md-button aria-label="Histórico" class="st-breadcumb-button-current-path-label" ng-click="$mdMenu.open()">
+       <ng-md-icon icon="{{currentPathIcon}}" ></ng-md-icon>
+          <span  class="st-breadcumb-atual-page">{{currentPathLabel}}</span>
+       <ng-md-icon icon="arrow_drop_down" ></ng-md-icon>
+      </md-button>
+      <md-menu-content  width="4" ng-show="routeHistory.length>1">
+        <md-menu-item class="st-breadcumb-route-history" ng-click="$stBreadcumbCtrl.data.changePath(r)" ng-if="r.path!=currentPath &&  r.path!='/login'" ng-repeat="r in routeHistory | reverse">
+          <md-button >
+            <ng-md-icon icon="{{r.icon}}"></ng-md-icon>
+            {{r.label}}
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+</md-menu>      
+          
+          
+
+
+

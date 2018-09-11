@@ -1,0 +1,40 @@
+﻿<meta charset="UTF-8" />
+<vertical-space></vertical-space>
+<div ng-controller="stControl">
+	<div class="col-lg-6">
+	    <st-filter-map
+			    filter-map-instace="filterMapInstance"
+				busca-especial="buscaEspecial"
+				filtros="[
+	 	        
+	 	        {attr:'_string.nome',placeholder:'Buscar pelo ...'},
+	 	        {attr:'_string.endereco',placeholder:'Buscar pelo ....'}
+				
+				]
+				">
+	   </st-filter-map>
+	</div>
+ 
+   
+   <view-chose class="col-lg-2" view-type="config.confs.viewType" ></view-chose>
+    <vertical-space class="only-desktop"></vertical-space>
+    <vertical-space class="only-desktop"></vertical-space>
+    <div class="col-lg-4 only-desktop" >
+	    <button ng-click="vm.openItem()" class="btn btn-default"><i class="fa fa-plus"></i> <strong> Cadastrar </strong></button>
+	</div>
+	
+	<button-add ng-click="vm.openItem()"></button-add>
+	<vertical-space></vertical-space>
+    <vertical-space></vertical-space>
+     
+     <teste-grid-view ng-if="config.confs.viewType=='grid'" class="generic-transition" objetos="objetos" edit-function="vm.openItem" delete-function="vm.deletarItem"></teste-grid-view>
+	
+     <teste-table-view ng-if="config.confs.viewType=='table' && objetos.length>0" class="col-lg-12 generic-transition" objetos="objetos" edit-function="vm.openItem" delete-function="vm.deletarItem"></teste-table-view>
+	 
+     <div ng-if="objetos.length==0" class="col-lg-12">
+        <st-no-itens label="'Nenhum item econtrado.'"></st-no-itens>
+     </div>
+
+    <vertical-space></vertical-space>
+    <st-pagination  filter-map-instance="filterMapInstance"></st-pagination>
+</div>

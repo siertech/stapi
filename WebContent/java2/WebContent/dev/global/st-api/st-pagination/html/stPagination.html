@@ -1,0 +1,26 @@
+<meta charset="UTF-8" />
+<footer  ng-hide="$parent.objetos.length==0 && pagina==0" class="st-pagination">
+       <div class="col-lg-3"></div>
+      <!-- Paginação -->
+		<div  class="col-lg-6">
+		    <p class="text-muted text-small text-center">Exibindo <strong>{{$parent.objetos.length}}</strong> de  <strong>{{$parent.countAll}}</strong></p>
+			<div class="st-pagination">
+			 <div class="panel" style="height:42px">
+			   <div class="panel-body" style="padding:0px;">
+				   <p style="margin:0px;">
+				   <span class="text-muted-2"><a  ng-click="setPagina(0)" ng-disabled="pagina==0"  class="btn"><i class="text-muted-2 fa fa-angle-double-left fa-2x" aria-hidden="true"></i></a></span>
+				   <span class="text-muted-2"><a  ng-disabled="pagina==0" ng-click="setPagina(pagina -1)"  class="btn"><i class="text-muted-2 fa fa-angle-left fa-2x" aria-hidden="true"></i></a></span>
+				   <strong><span class="text-muted-2">Página {{pagina +1}}</span></strong>
+				   <span class="text-muted-2"><a  ng-disabled="! ( ($parent.objetos.length > 0 ) && ( ((pagina+1) * max) < $parent.countAll ))" ng-click="setPagina(pagina +1)" class="btn"><i class="text-muted-2 fa fa-angle-right fa-2x" aria-hidden="true"></i></a></span>
+				   <span class="text-muted-2"><a ng-click="setPagina(pagina)"  class="text-muted-2"><i class="fa fa-refresh"></i></a></span>
+				   </p>
+			   </div>
+			 </div>
+			</div>
+		</div>
+		<div class="col-lg-3"></div>
+</footer>
+
+
+
+

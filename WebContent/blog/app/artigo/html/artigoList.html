@@ -1,0 +1,21 @@
+﻿<meta charset="UTF-8" />
+<div class="col-lg-2">
+<h3>Artigos</h3>
+<div style="max-height: 400px;overflow-y: scroll;">
+<ul class="list-group">
+  <li class="list-group-item"  ng-repeat="a in vm.artigos">
+	  <a href="#/artigo/{{a.url}}" class="text-muted text-small">
+	  {{a.titulo}} - {{a.dataCadastro|date:'dd/MM/yyyy'}}
+	  </a>
+  </li>
+</ul>
+</div>
+</div>
+<div class="artigo-content col-lg-9">
+       <h3><strong>{{vm.artigoSelected.titulo}}</strong></h3>
+       <panel>
+      	   <div html-compile html="vm.artigoSelected.content">
+	              
+		   </div>
+       </panel>
+</div>

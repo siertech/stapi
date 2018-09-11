@@ -1,0 +1,24 @@
+<meta charset="UTF-8" />
+<md-menu>
+      <md-button aria-label="{{$buttonFilialCtrl.currentFilial.nome}}" class="md-primary md-raised button-filial-current-filial" ng-click="$mdMenu.open()"> 
+       <ng-md-icon icon="business"></ng-md-icon>
+       <span md-truncate>{{$buttonFilialCtrl.currentFilial.nome}}</span>
+      </md-button>
+      <md-menu-content width="4">
+         <md-menu-item>
+               <md-button  ng-click="$buttonFilialCtrl.changeFilial({id:0, nome: 'Todas'})">
+	            <ng-md-icon icon="business"></ng-md-icon>
+	            Exibir todas
+          </md-button>
+         </md-menu-item>
+         <md-divider></md-divider>
+        <md-menu-item class="button-filial-filiais"  ng-repeat="filial in $buttonFilialCtrl.filiais">
+          <md-button id="filial-index-{{$index}}"  ng-click="$buttonFilialCtrl.changeFilial(filial)">
+            <ng-md-icon icon="business"></ng-md-icon>
+            {{filial.nome}}
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+ </md-menu>
+		   
+		

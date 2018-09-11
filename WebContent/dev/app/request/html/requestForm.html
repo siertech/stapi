@@ -1,0 +1,50 @@
+<meta charset="UTF-8" />
+<md-content>
+  <md-card>
+       <md-card-content layout="row" layout-wrap>
+                 <div  layout="row" flex="100" >
+                   <h2><ng-md-icon md-colors="{color: 'green'}" icon="compare_arrows"></ng-md-icon> Teste de requisição</h2> 
+                   <span flex></span>
+                   <md-button class="md-raised md-primary" >
+                      <ng-md-icon icon="send"></ng-md-icon> 
+                    Executar
+               </md-button>
+               </div>
+               <md-input-container flex="30">
+                  <label>Tipo</label>
+                  <md-select ng-model="someModel">
+                    <md-option ng-value="'get'" >GET</md-option>
+                    <md-option ng-value="'post'" >POST</md-option>
+                  </md-select>
+               </md-input-container>
+               <md-divider></md-divider>
+               <st-input-string flex="30" label="URL Base (Ex: localhost:8080/Protosaat/)" ng-model="url"></st-input-string>
+               <md-divider></md-divider>
+               <st-input-string flex="30" label="URL " ng-model="url"></st-input-string>
+               <md-input-container flex="100">
+			          <label>Parametros</label>
+			          <st-string-chip placeholder="Inserir parametro." ng-model="$metaDetalheCtrl.data.item.evidencias"></st-string-chip>
+	          </md-input-container>
+              <div flex="45" >
+                <p>Body (Formato JSON)</p>
+               <textarea ui-codemirror="{
+					      lineNumbers: true,
+					
+					      mode: 'xml',
+					     
+					    }" 
+					   ng-model="asdas"
+					    >
+				    </textarea>
+              </div>
+                <div  flex="50">
+                  <p>Resposta</p>
+                     <md-card>
+                         <md-card-content>
+
+                         </md-card-content>
+                     </md-card>
+                </div>
+             </md-card-content>
+        </md-card>
+</md-content>

@@ -1,0 +1,77 @@
+<meta charset="UTF-8" />
+<form ng-cloak class="st-detalhe-content">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 md-truncate>{{$requestDetalheCtrl.data.item.descricao || 'Requisição'}}</h2>
+        <span flex></span>
+        <md-button class="st-detallhe-cancel-button md-icon-button" ng-click="$requestDetalheCtrl.data.cancelFunction()">
+             <ng-md-icon icon="close"></ng-md-icon> 
+        </md-button>
+      </div>
+    </md-toolbar>
+  	<md-dialog-content>
+        <div class="md-dialog-content">
+            <md-content>
+  <md-card>
+       <md-card-content layout="row" layout-wrap>
+				<div  layout="row" flex="100" >
+				         <st-input-string flex="100" label="Descrição da requisição" ng-model="$requestDetalheCtrl.data.item.descricao"></st-input-string>
+				         <span flex></span>
+				</div>
+				<md-input-container flex="30">
+                 <label>Tipo</label>
+                 <md-select ng-model="$requestDetalheCtrl.data.item.tipo">
+                   <md-option ng-value="'GET'" >GET</md-option>
+                   <md-option ng-value="'POST'" >POST</md-option>
+                 </md-select>
+               </md-input-container>
+               <md-divider></md-divider>
+               <st-input-string flex="30" label="URL Base (Ex: localhost:8080/Protosaat/)" ng-model="$requestDetalheCtrl.data.item.urlBase"></st-input-string>
+               <md-divider></md-divider>
+               <st-input-string flex="30" label="URL " ng-model="$requestDetalheCtrl.data.item.url"></st-input-string>
+               <md-input-container flex="100">
+			          <label>Parametros</label>
+			          <st-string-chip placeholder="Inserir parametro." ng-model="$requestDetalheCtrl.data.item.parametros"></st-string-chip>
+	          </md-input-container>
+              <div flex="45" >
+                <p>Body (Formato JSON)</p>
+               <textarea ui-codemirror="{
+					      lineNumbers: true,
+					
+					      mode: 'xml',
+					     
+					    }" 
+					   ng-model="$requestDetalheCtrl.data.item.body"
+					    >
+				    </textarea>
+              </div>
+               <div  flex="50">
+                 <p>Resposta</p>
+                    <md-card>
+                        <md-card-content>
+                         <json-tree ng-if="$requestDetalheCtrl.data.response" object="$requestDetalheCtrl.data.response" start-expanded="true" root-name="'Response'"></json-tree>
+                        </md-card-content>
+                    </md-card>
+               </div>
+            </md-card-content>
+       </md-card>
+</md-content>
+       </div>
+    </md-dialog-content>
+	<md-dialog-actions   layout="row">
+      <md-button class="md-raised md-warn st-detalhe-delete-button" ng-if="$requestDetalheCtrl.data.item.id" confirm ng-disabled="$requestDetalheCtrl.data.loading==true"  ng-click="$requestDetalheCtrl.data.deleteFunction($requestDetalheCtrl.data.item)"  >
+	      <ng-md-icon icon="delete"></ng-md-icon>
+	       Deletar
+      </md-button>
+       <md-button  class="md-raised md-accent st-detalhe-save-button"  ng-disabled="$requestDetalheCtrl.data.loading==true" ng-click="$requestDetalheCtrl.executar($requestDetalheCtrl.data.item)"  >
+          <ng-md-icon icon="send"></ng-md-icon>
+          Executar
+      </md-button>
+      <md-button  class="md-raised md-primary st-detalhe-save-button"  ng-disabled="$requestDetalheCtrl.data.loading==true" ng-click="$requestDetalheCtrl.data.saveFunction($requestDetalheCtrl.data.item)"  >
+          <ng-md-icon icon="check_circle"></ng-md-icon>
+          Salvar
+      </md-button>
+    </md-dialog-actions>
+</form>
+    
+ 

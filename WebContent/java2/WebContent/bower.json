@@ -1,0 +1,43 @@
+{
+  "name": "st-api",
+  "description": "api siertech",
+  "version": "3.3.4",
+  "keywords": [
+    "css",
+    "js",
+    "less",
+    "mobile-first",
+    "responsive",
+    "front-end",
+    "framework",
+    "web"
+  ],
+  "homepage": "www.siertech.com.br",
+  "main": [
+    "dist/js/st-api-lib-base.js",
+    "dist/js/st-api.js"
+  ],
+  "ignore": [
+    "/.*",
+    "_config.yml",
+    "CNAME",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "docs",
+    "node_modules",
+    "js/tests",
+    "test-infra"
+  ],
+  "dependencies": {
+    "stapiweb": "https://github.com/thomazaudio/stapiweb.git",
+    "angular-bootstrap-checkbox": "^0.5.1",
+    "angular-material": "^1.1.9",
+    "angular-material-data-table": "^0.10.10",
+    "chart.js": "^2.7.2"
+  },
+  "authors": [
+    "Thomaz Reis Damasceno"
+  ],
+  "license": "MIT",
+  "private": true
+}

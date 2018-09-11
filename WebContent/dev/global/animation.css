@@ -1,0 +1,71 @@
+@keyframes animation-onboarding-focus {
+    0%   {
+        filter: brightness(1);
+        filter: contrast(1);
+        -webkit-filter: brightness(1);
+        -webkit-filter: contrast(1);
+    }
+    50%  {
+        filter: brightness(0.4);
+        filter: contrast(0.4);
+        -webkit-filter: brightness(0.4);
+        -webkit-filter: contrast(0.4);
+    }
+    100% {
+        filter: brightness(1);
+        filter: contrast(1);
+        -webkit-filter: brightness(1);
+        -webkit-filter: contrast(1);
+    }
+}
+
+.transition-button-view-chose.ng-enter{
+  transition: all 0.3s linear;
+  opacity: 0;
+}
+
+.transition-button-view-chose.ng-enter.ng-enter-active{
+   opacity: 1;
+}
+
+.generic-transition.ng-enter{
+  transition: all 0.7s linear;
+  opacity: 0;
+}
+
+.generic-transition.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+
+/*Animação para mudança de rota*/
+.route-view.ng-enter{
+  transition: all 0.7s linear;
+  opacity: 0;
+}
+
+.route-view.ng-enter-active {
+  opacity: 1;
+}
+
+/*FIM Animação para mudança de rota*/
+
+.dropdownli ul {
+    position:absolute;
+    left:0;
+    top:36px;
+    z-index:1;
+    visibility:hidden;
+    opacity:0;
+    filter:alpha(opacity=0);
+    -webkit-transition:200ms ease;
+    -moz-transition:200ms ease;
+    -o-transition:200ms ease;
+    transition:200ms ease;
+}
+.dropdown ul > li:hover ul {
+    visibility:visible;
+    opacity:1;
+    filter:alpha(opacity=100);
+}
+

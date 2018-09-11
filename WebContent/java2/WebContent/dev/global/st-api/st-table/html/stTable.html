@@ -1,0 +1,34 @@
+<meta charset="UTF-8" />
+<md-content layout="column" flex>
+     <md-card>
+       <md-table-container>
+          <table md-table md-row-select="true" multiple="true" ng-model="$stTableCtrl.selectedItems">
+            <thead  md-head md-order="$stTableCtrl.orderBy">
+             <tr md-row>
+                <th md-column  ng-repeat="col in $stTableCtrl.columns"  md-order-by="{{col.orderBy==true? col.attr :  ''}}">
+                     <ng-md-icon ng-if="col.labelIcon" icon="{{col.labelIcon}}"></ng-md-icon>
+                    <span>{{col.label}}</span>
+                </th>
+                 <th md-column></th>
+              </tr>
+            </thead>
+           <tbody md-body>
+              <tr ng-dblclick="$stTableCtrl.openDetail(item)" md-select-id="id" md-row md-select="item"   ng-repeat="item in $stTableCtrl.items | orderBy: $stTableCtrl.orderBy">
+                <td 
+                   md-cell 
+                   ng-repeat="col in $stTableCtrl.columns"
+                   ng-click="col.editable==true && $stTableCtrl.editColumn($event, {item: item, column: col.attr, placeholder: col.placeholder})"
+                   ng-class="{'edit-column': col.editable==true, 'md-placeholder': !$stTableCtrl.getColumnValue(item, col.attr)}" 
+                   >
+                   <span ng-class="{'md-body-2': $index==0}">{{$stTableCtrl.getColumnValue(item, col.attr, col.filter)}}</span>
+                </td>
+                <td md-cell >
+                <st-crud-tools  item="item" delete-function="$stTableCtrl.deleteFunction([item.id])" open-detail="$stTableCtrl.openDetail(item)" ></st-crud-tools>
+               </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </md-card>
+   </md-content>
+   

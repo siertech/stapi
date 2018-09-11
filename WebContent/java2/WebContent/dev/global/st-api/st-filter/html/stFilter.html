@@ -1,0 +1,30 @@
+<meta charset="UTF-8" />
+  <!-- Campo de busca principal(Especial) -->
+ 
+    <div layout="row" >
+        <md-input-container flex class="md-block" >
+            <input placeholder="{{vm.filtroAtivo.label}}" ng-change="vm.executarBusca(vm.filtroAtivo)" ng-model-options="{debounce: 500}" ng-model="vm.filtroAtivo.value" />
+            <md-button ng-show="vm.filtroAtivo.value" ng-click="vm.filtroAtivo.value='';vm.executarBusca(vm.filtroAtivo)" class="animate-show md-icon-button md-accent" style="position: absolute; top: 0px; right: -15px;">
+              <div>X</div>
+             </md-button>
+            </md-input-container>
+        </md-input-container>
+        <div>
+             <md-menu>
+			      <md-button     style="margin: 15px" aria-label="Alterar filtros" class="md-icon-button md-accent" ng-click="vm.openMenuFiltros($mdMenu, $event)">
+			        <ng-md-icon icon="filter_list"></ng-md-icon> 
+			        <md-tooltip>Alterar filtros</md-tooltip>
+			      </md-button>
+			      <md-menu-content width="4">
+			      
+			        <md-menu-item ng-repeat="filtro in vm.filtros" ng-click="vm.changeFiltroAtivo(filtro)" >
+			          <md-button class="md-primary" >
+			             {{filtro.label}}
+			             <ng-md-icon ng-show="vm.filtroAtivo.attr==filtro.attr" icon="check_box"></ng-md-icon> 
+			          </md-button>
+			        </md-menu-item>
+			        
+			      </md-menu-content>
+			    </md-menu>
+        </div>
+    </div>  

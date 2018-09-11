@@ -1,0 +1,29 @@
+﻿<meta charset="UTF-8" />
+<!-- 
+Exemplos
+<input-check class="col-lg-3" ng-true-value="true" ng-false-value="false" class="col-lg-3" label="Titulo" ng-model="vm.item.attrCheck"></input-check>
+<input-double class="col-lg-3" label="Valor" ng-model="vm.item.attrDouble" ></input-double>
+<input-date class="col-lg-3" label="Data" ng-model="vm.item.data" ></input-date>
+<input-string class="col-lg-3" label="Digite o nome" ng-model="vm.item.nome" ></input-string>
+<input-int class="col-lg-3" label="Quantidade" ng-model="vm.item.quantidade" ></input-int>
+-->
+<div layout="row">
+		<input-string flex="25" label="Título do componente" ng-model="$democomponentDetalheCtrl.data.item._string.titulo" ></input-string>
+		<input-string flex="25" label="Prioridade" ng-model="$democomponentDetalheCtrl.data.item._string.priority" ></input-string>
+		<input-string flex="25" label="Classe" ng-model="$democomponentDetalheCtrl.data.item._string.class" ></input-string>
+		 <input-string flex="25" label="Categoria" ng-model="$democomponentDetalheCtrl.data.item._string.categoria" ></input-string>
+ </div>
+<md-divider></md-divider>
+<div class="row">
+   <panel>
+    <div html-view
+           titulo="$democomponentDetalheCtrl.data.item._string.titulo"
+           content ="$democomponentDetalheCtrl.data.item.content">
+     </div>
+    </panel>
+  </div>
+
+
+
+   
+      

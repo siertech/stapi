@@ -1,0 +1,84 @@
+<meta charset="UTF-8" />
+
+<div class="col-lg-12"><h3>UI Components</h3></div>
+
+<!-- auto complete -->
+<div class="col-lg-12">
+     <h4>Auto complete</h4>
+    <hr></hr>
+</div>
+<div  ng-repeat="auto in autocomplete">
+   <panel class="{{auto._string.class || 'col-lg-4'}}">
+	    <div html-view
+	           titulo="auto._string.titulo"
+	           content ="auto.content">
+	     </div>
+     </panel>
+</div>
+
+
+<!-- Input -->
+<div class="col-lg-12">
+     <h4>Input</h4>
+    <hr></hr>
+</div>
+<div  ng-repeat="i in input">
+   <panel class="{{i._string.class || 'col-lg-4'}}">
+	    <div html-view
+	           titulo="i._string.titulo"
+	           content ="i.content">
+	     </div>
+     </panel>
+</div>
+
+<!-- Botões -->
+<div class="col-lg-12">
+     <h4>Botões</h4>
+    <hr></hr>
+</div>
+<div  ng-repeat="b in botao">
+   <panel class="{{b._string.class || 'col-lg-4'}}">
+	    <div html-view
+	           titulo="b._string.titulo"
+	           content ="b.content">
+	     </div>
+     </panel>
+</div>
+
+
+<!-- checklist -->
+<div class="col-lg-12">
+     <h4>Outros</h4>
+    <hr></hr>
+</div>
+<div  ng-repeat="o in outros">
+   <panel class="{{o._string.class || 'col-lg-4'}}">
+	    <div html-view
+	           titulo="o._string.titulo"
+	           content ="o.content">
+	     </div>
+     </panel>
+</div>
+
+<vertical-space></vertical-space>
+<st-nav active-tab="tt"  tabs="[{icon:'home',label:'Início'}, {label:'Clientes', icon:'user'}]"></st-nav>
+
+<div ng-if="tt==0" class="generic-transition">
+<panel>
+   <st-input-int class="cl-lg-3" label="Teste de perfomance 1" ng-model="teste"></st-input-int>
+</panel>
+<panel>
+   <st-input-int class="cl-lg-3" label="Teste de perfomance 2" ng-model="teste"></st-input-int>
+</panel>
+<panel>
+   <st-input-int class="cl-lg-3" label="Teste de perfomance 3" ng-model="teste"></st-input-int>
+</panel>
+</div>
+
+
+<div ng-if="tt==1" class="generic-transition">
+	<div simditor ng-model="content">
+	
+	</div>
+</div>
+ 

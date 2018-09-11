@@ -1,0 +1,67 @@
+<h1><code ng:non-bindable="">stService</code>
+<div><span class="hint">service in module <code ng:non-bindable="">stapi</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="stapi-stservice-page"><p>Auxiliar de operações CRUD</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_delete">delete(nomeObjeto, ids)</h3>
+<div class="delete"><div class="delete-page"><p>Deleta itens especificando seus respectivos ids</p>
+</div><h5 id="methods_delete_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>nomeObjeto</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="delete-page"><p>Rota do objeto, ex: produto</p>
+</div></td></tr><tr><td>ids</td><td><a href="" class="label type-hint type-hint-int">Int[]</a></td><td><div class="delete-page"><p>Lista de ids a serem deletados</p>
+</div></td></tr></tbody></table><h4 id="methods_delete_example">Example</h4>
+<div class="example"><div class="delete-page"><pre class="prettyprint linenums">
+stService.delete("produto",[10,12]).sucess(function(){}).error(function(){})
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_getall">getAll(nomeObjeto)()</h3>
+<div class="getall"><div class="getall-nomeobjeto--page"><p>Retorna todos os objetos</p>
+</div><h4 id="methods_getall_example">Example</h4>
+<div class="example"><div class="getall-nomeobjeto--page"><pre class="prettyprint linenums">
+stService.getAll("produto").sucess(function(res){
+     console.log(res.itens);
+})
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_getbyid">getById(nomeObjeto,id)()</h3>
+<div class="getbyid"><div class="getbyid-nomeobjeto-id--page"><p>Retorna um objeto completo especificando seu id</p>
+</div><h4 id="methods_getbyid_example">Example</h4>
+<div class="example"><div class="getbyid-nomeobjeto-id--page"><pre class="prettyprint linenums">
+stService.getById("produto",10).sucess(function(res){
+     console.log(res.item);
+})
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_getlikemap">getLikeMap(nomeObjeto, querys ,pagina, max, extra)()</h3>
+<div class="getlikemap"><div class="getlikemap-nomeobjeto-querys-pagina-max-extra--page"><p>Retorna uma lista de de objetos especificando diversos filtros</p>
+</div><h4 id="methods_getlikemap_example">Example</h4>
+<div class="example"><div class="getlikemap-nomeobjeto-querys-pagina-max-extra--page"><pre class="prettyprint linenums">
+stService.getLikeMap("produto",["preco=10","quantidade&gt;20"],0,0,"").sucess(function(res){
+     console.log(res.itens);
+})
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_save">save(nomeObjeto, Objeto)</h3>
+<div class="save"><div class="save-page"><p>Salva um objeto específico</p>
+</div><h5 id="methods_save_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>nomeObjeto</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="save-page"><p>Rota do objeto, ex: produto</p>
+</div></td></tr><tr><td>Objeto</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="save-page"><p>a ser salvo, ex: {nome:&quot;Produto teste&quot;}</p>
+</div></td></tr></tbody></table><h4 id="methods_save_example">Example</h4>
+<div class="example"><div class="save-page"><pre class="prettyprint linenums">
+stService.save("produto",{nome:"Produto Teste"}).sucess(function(){}).error(function(){})
+</pre>
+</div></div>
+</div>
+</li>
+</ul>
+</div>
+</div>

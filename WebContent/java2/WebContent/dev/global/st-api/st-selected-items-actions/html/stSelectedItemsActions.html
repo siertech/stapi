@@ -1,0 +1,19 @@
+
+<md-toolbar layout="row" class="md-table-toolbar alternate md-default" ng-show="$stSelectedItemsActionsCtrl.selectedItems.length>0">
+              <md-menu flex>
+			      <md-button aria-label="Open phone interactions menu" class="md-default md-raised" ng-click="$mdMenu.open()">
+			          <span ng-if="$stSelectedItemsActionsCtrl.selectedItems.length>1">{{$stSelectedItemsActionsCtrl.selectedItems.length}} itens selecionados</span>
+			          <span ng-if="$stSelectedItemsActionsCtrl.selectedItems.length==1">1 item selecionado</span>
+			          <ng-md-icon icon="arrow_drop_down"></ng-md-icon>
+			      </md-button>
+			      <md-menu-content width="4" ng-transclude>
+				      <md-menu-item>
+				          <md-button confirm ng-click="$stSelectedItemsActionsCtrl.deleteFunction()">
+				            <ng-md-icon icon="delete"></ng-md-icon>
+				            Deletar
+				          </md-button>
+				       </md-menu-item>
+			      </md-menu-content>
+		    </md-menu>
+  </md-toolbar>
+ 

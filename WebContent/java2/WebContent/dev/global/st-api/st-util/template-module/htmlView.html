@@ -1,0 +1,28 @@
+<meta charset="UTF-8" />
+<div layout="row">
+  <st-nav active-tab="vm.tab" tabs="[{label:'View', icon:'eye'}, {label:'Código', icon:'code'}]"></st-nav>
+ </div>
+   <div layout="row">
+       <h4 flex>{{vm.titulo}}</sh4>
+    </div>
+    <div ng-show="vm.tab==0" flex>
+	    <div html-compile html="vm.content">
+	   
+	    </div>
+    </div>
+    <div ng-show="vm.tab==1" flex>
+		     <textarea ui-codemirror="{
+			      lineNumbers: true,
+			      theme:'twilight',
+			      mode: 'xml',
+			     
+			    }" 
+			   ng-model="vm.content"
+			    >
+		    </textarea>
+	   </div>
+    
+</div>
+
+
+
