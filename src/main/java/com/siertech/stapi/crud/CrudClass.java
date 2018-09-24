@@ -24,6 +24,8 @@ import lombok.Setter;
 public  class CrudClass {
 	
 	
+	
+	/*
 	@ElementCollection(targetClass=String.class,fetch=FetchType.EAGER)
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
 	private Map<String,String> _string = new HashMap<String,String>();
@@ -40,6 +42,8 @@ public  class CrudClass {
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
 	private Map<String,String> _date = new HashMap<String,String>();
 	
+	
+	*/
 	
 	//Filial correspondente
 	@JsonView(com.siertech.stapi.util.Views.Public.class)

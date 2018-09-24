@@ -118,7 +118,7 @@ public abstract class GenericControl<E> {
 
 		return res;
 	}
-
+	
 
 	public AjaxResponse<E> getLikeMapAndRespond(String[] qs, int pagina, int max, String extra) {
 
@@ -126,6 +126,7 @@ public abstract class GenericControl<E> {
 
 		//Seta a quantidade total de itens indepentemente da paginação
 		res.setCountAll(service.getCountItens(qs, extra));
+		
 
 		//Seta os objetos
 		res.setItens(service.getLikeMap(qs, pagina, max, extra));

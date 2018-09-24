@@ -37,7 +37,9 @@
 			"youtube-embed",
 			"ng.deviceDetector",
 			"ngOnboarding",
-			"angularResizable"
+			"angularResizable",
+			"oc.lazyLoad"
+			
 
 			]);
 		
@@ -50,6 +52,20 @@
 		window.alert(e);
 	}
 	
+	
+	 app.config(function($locationProvider) {
+
+
+	        // use the HTML5 History API
+	        //$locationProvider.html5Mode(true);
+	    });
+	 
+	 
+	 app.config([ "$ocLazyLoadProvider", function($ocLazyLoadProvider) {
+	       $ocLazyLoadProvider.config({
+	          debug: true
+	       });
+	   }]);
 	
 	
 	app.config(function($provide) {
@@ -174,8 +190,15 @@
 				//Caso o usuário não esteja logado, é direcionado para página de login
 				if(!$rootScope.usuarioSistema && (!next.$$route || next.$$route.originalPath.indexOf("/login/:login")==-1) && next.$$route.originalPath.indexOf("/cadastro/:login")==-1 && next.$$route.originalPath.indexOf("/prot/:template")==-1 ){
 
-					if(!config.securityPaths || config.confs.securityPaths=="all" || config.confs.securityPaths.indexOf( next.$$route.originalPath )!=-1){
+					console.log("secutity path");
+					console.log(config.confs.securityPaths);
+					console.log("original path: ");
+					console.log(next.$$route.originalPath);
+					var originalPath = next.$$route.originalPath.replace("/","");
+					if(!config.confs.securityPaths || config.confs.securityPaths=="all" || config.confs.securityPaths.indexOf( originalPath )!=-1){
 
+						
+						
 						var login = {
 								empresa: $localStorage.empresa,
 								usuario: $localStorage.usuario,
@@ -196,6 +219,8 @@
 							}
 
 						});
+						
+					
 
 					}
 
