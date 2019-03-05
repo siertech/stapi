@@ -1,0 +1,11 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "WebContent/dev/global/lib/simditor/ng-simditor/package.json",
+        "WebContent/java2/WebContent/package.json",
+        "WebContent/package.json"
+      ]
+    }
+  }
+}
