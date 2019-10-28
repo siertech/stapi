@@ -68,6 +68,7 @@
 			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 			    <prop key="hibernate.hbm2ddl.auto">NONE</prop>
 				<prop key="hibernate.multiTenancy">SCHEMA</prop>
+				<prop key="hibernate.connection.characterEncoding">utf8</prop>
 				<prop key="hibernate.tenant_identifier_resolver">com.siertech.stapi.database.CurrentTenantIdentifierResolverImpl</prop>
 				<prop key="hibernate.multi_tenant_connection_provider">com.siertech.stapi.database.MultiTenantConnectionProvider</prop>
 			</props>

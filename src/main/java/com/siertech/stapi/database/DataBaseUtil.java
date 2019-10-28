@@ -326,7 +326,7 @@ public class DataBaseUtil {
 		stm.execute("CREATE DATABASE IF NOT EXISTS " + nomeDb);
 		stm.execute("USE " + nomeDb);
 
-		//Popular com dados padrão		rdp.populate(connection);
+		//Popular com dados padrão		rdp.populate(connection);
 
 		//Alterar login padrão
 		stm.execute("update pessoa set nome='"+user.getNome().split(" ")[0]+"', login = '"+user.getLogin()+"', senha='123',defaultPassword=1 where id=1 ");
