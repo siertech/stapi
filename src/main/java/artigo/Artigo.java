@@ -15,7 +15,7 @@ import com.siertech.stapi.util.Views;
 public  class Artigo extends CrudClass {
 	
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
-	private String testeParaVerSeEstaAtualizando;
+	private String testeParaVerSeEstaAtualizando222;
 
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
 	private String titulo;
