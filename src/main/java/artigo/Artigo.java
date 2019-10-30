@@ -13,6 +13,9 @@ import com.siertech.stapi.util.Views;
 @Table(name = "artigo")
 @Getter @Setter
 public  class Artigo extends CrudClass {
+	
+	@JsonView(com.siertech.stapi.util.Views.Public.class)
+	private String testeParaVerSeEstaAtualizando;
 
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
 	private String titulo;
