@@ -82,7 +82,7 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 	@JsonView(com.siertech.stapi.util.Views.Public.class)
 	@ResponseBody
 	@RequestMapping(value="/cadastrar-usuario", method= RequestMethod.GET)
-	public AjaxResponse<UserSystem> cadastrarUsuario(@RequestParam String login) {
+	public AjaxResponse<UserSystem> cadastrarUsuario(@RequestParam String login, @RequestParam String senha) {
 
 		AjaxResponse<UserSystem> res= new AjaxResponse<UserSystem>();
 
@@ -93,9 +93,10 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 			UserSystem user = new UserSystem();
 			user.setNome("Admin");
 			user.setLogin(login);
+		
 
 			//Adiciona um novo schema no sistema
-			new DataBaseUtil().createOrUpdateSchema(user);
+			new DataBaseUtil().createOrUpdateSchema(user, senha);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

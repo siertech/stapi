@@ -302,7 +302,7 @@ public class DataBaseUtil {
 
 	}
 
-	public void createOrUpdateSchema (UserSystem user) throws SQLException{
+	public void createOrUpdateSchema (UserSystem user, String senha) throws SQLException{
 
 		String nomeDb = DB_PREFIX + user.getLogin();
 		
@@ -315,8 +315,6 @@ public class DataBaseUtil {
 			return;
 		}
 		
-		
-
 		
 
 		Statement stm = getConnection().createStatement();
@@ -336,7 +334,7 @@ public class DataBaseUtil {
 		
 		String query = "insert into pessoa(tipo_pessoa, disable,defaultPassword, login, senha) values('operador_sistema',0,0,':login', ':senha')";
 		query = query.replace(":login", user.getLogin());
-		query = query.replace(":senha", "123");
+		query = query.replace(":senha", senha);
 		
 
 		stm.execute(query);
