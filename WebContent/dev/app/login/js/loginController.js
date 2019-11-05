@@ -27,6 +27,9 @@
 			loginUtil.logar(login,lembrarSenha,function(loginData){
 
 				ctrl.loading=false;
+				
+				console.log("login data aqui: ");
+				console.log(loginData);
 
 				if(loginData){
 

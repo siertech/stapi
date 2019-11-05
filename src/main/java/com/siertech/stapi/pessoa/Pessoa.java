@@ -49,23 +49,15 @@ public class Pessoa extends CrudClass{
 
 	@JsonView(Views.Public.class)
 	private String senha;
+	
+	@JsonView(Views.Public.class)
+	private String nome;
 
 	//Identifica se a senha padrão não foi alterada (defaultPassword==1)
 	@JsonView(Views.Public.class)
 	private boolean defaultPassword;
 
 
-	@JsonView(Views.Public.class)
-	private String fone;
-
-	@JsonView(Views.Public.class)
-	private int tipoDoc;
-
-	@JsonView(Views.Public.class)
-	private String nome;
-
-	@JsonView(Views.Public.class)
-	private String xNome;
 	
 	@JsonView(Views.Public.class)
 	private String email;
@@ -75,38 +67,9 @@ public class Pessoa extends CrudClass{
 	@Column(insertable = false, updatable = false)
 	private String tipo_pessoa;
 
-	@JsonView(Views.Public.class)
-	private String cpf;
+	
 
-	@JsonView(Views.Public.class)
-	private String cnpj;
-
-	//Pessoa física, jurídica ou estrangeira
-	@JsonView(Views.Public.class)
-	private String tipoPessoaFiscal;
-
-
-
-	//DADOS FISCAIS
-
-	//Identificado da IE do destinatário
-	@JsonView(Views.Public.class)
-	private String indIEDest;
-
-	//Inscrição estadual do destinatário
-	@JsonView(Views.Public.class)
-	private String IE;
-
-
-	//Inscrição SUFRAMA
-	@JsonView(Views.Public.class)
-	private String ISUF;
-
-
-	//Inscrição Municipal do tomador de serviço
-	@JsonView(Views.Public.class)
-	private String IM;
-
+	
 
 
 

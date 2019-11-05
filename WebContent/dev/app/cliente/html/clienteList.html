@@ -21,6 +21,15 @@
          </md-toolbar>
 </md-card>
 
+<st-check-list 
+    attr-label="principalAttr" 
+    hide-delete-all="true"
+    show-border-no-items="true"
+    hide-add = "true"
+    hide-checkbox="true"
+    crud-options = "{objectName: 'Cliente'}"
+    ></st-check-list>
+
 	<float-button-add ng-hide="$clienteListCtrl.hideButtonAdd==true"  class="float-add-button" tooltip-label="Cadastrar novo cliente" ng-click="$clienteListCtrl.data.openDetail()" ></float-button-add>
 	<div layout="row" style="margin:8px">
 	    <md-progress-linear

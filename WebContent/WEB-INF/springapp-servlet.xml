@@ -63,6 +63,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		
 		<property name="hibernateProperties">
 			<props>
 			    <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
@@ -107,13 +108,6 @@
 	
 	<security:global-method-security secured-annotations="enabled"/>
 	<mvc:resources mapping="/**" location="/" />
-	 <mvc:resources mapping="/resources/**" location="/" />
-    <mvc:resources mapping="/resources/**/**" location="/" />
-	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:resources mapping="/comanda/**" location="/comanda/" />
-	<mvc:resources mapping="/dist/**" location="/dist/" />
-	<mvc:resources mapping="/adm/**" location="/dev/" />
-	<mvc:resources mapping="/global/**" location="/global/" />
 
     <mvc:annotation-driven />
     

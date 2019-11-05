@@ -242,7 +242,7 @@ public class DataBaseUtil {
 		try {
 			if(connection==null || connection.isClosed())
 				try {
-					connection = 	DriverManager.getConnection(getDbConnectionString(), getHibernateConfiguration().getProperty("hibernate.connection.username"), getHibernateConfiguration().getProperty("hibernate.connection.username"));
+					connection = 	DriverManager.getConnection(getDbConnectionString(), getHibernateConfiguration().getProperty("hibernate.connection.username"), getHibernateConfiguration().getProperty("hibernate.connection.password"));
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -305,31 +305,41 @@ public class DataBaseUtil {
 	public void createOrUpdateSchema (UserSystem user) throws SQLException{
 
 		String nomeDb = DB_PREFIX + user.getLogin();
-
+		
+		
+	  
 		//Verifica se já existe schema criado
 		if(existeSchema(nomeDb)){
 			//Atualiza o banco de dados
 			updateSchema((ComboPooledDataSource) getDataSource(nomeDb),nomeDb);
 			return;
 		}
+		
+		
 
-		//Popula o banco de dados
-		ResourceDatabasePopulator rdp = new ResourceDatabasePopulator();    
-		rdp.addScript(new ClassPathResource("estrutura-banco.sql"));
-		rdp.addScript(new ClassPathResource("estados-cidades.sql"));
-		rdp.setSqlScriptEncoding("UTF-8");
-
+		
 
 		Statement stm = getConnection().createStatement();
 
+		String queryCreateSchema = "CREATE SCHEMA  `"+nomeDb+"`";
+		
+		System.out.println("queryCreateSchema: "+queryCreateSchema);
+		
 		// Criar o Schema para o novo usuário
-		stm.execute("CREATE DATABASE IF NOT EXISTS " + nomeDb);
+		stm.execute(queryCreateSchema);
+		
+		updateSchema((ComboPooledDataSource) getDataSource(nomeDb),nomeDb);
+		
 		stm.execute("USE " + nomeDb);
 
 		//Popular com dados padrão		rdp.populate(connection);
+		
+		String query = "insert into pessoa(tipo_pessoa, disable,defaultPassword, login, senha) values('operador_sistema',0,0,':login', ':senha')";
+		query = query.replace(":login", user.getLogin());
+		query = query.replace(":senha", "123");
+		
 
-		//Alterar login padrão
-		stm.execute("update pessoa set nome='"+user.getNome().split(" ")[0]+"', login = '"+user.getLogin()+"', senha='123',defaultPassword=1 where id=1 ");
+		stm.execute(query);
 
 		//Atualiza o banco de dados
 		updateSchema((ComboPooledDataSource) getDataSource(nomeDb),nomeDb);

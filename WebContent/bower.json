@@ -34,6 +34,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angularjs-social-login": "^2.6.1"
+    "angularjs-social-login": "^2.6.1",
+    "angular-json-tree": "^1.1.0",
+    "angular-resizable": "^1.2.0",
+    "oclazyload": "^1.1.0"
   }
 }

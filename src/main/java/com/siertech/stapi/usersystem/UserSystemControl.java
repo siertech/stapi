@@ -62,13 +62,18 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 		AccountUserDetails userDetails = userDetailService.loadUserByUsername(usuario);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		ArrayList<Config> configs =  configService.getAll();
-		Config configUsuario = null;
+		Config configUsuario = new Config();
 		if(configs.size()>0){
 		
 			configUsuario = configs.get(0);
 		}
 		
 		ArrayList<Filial> filiais = filialService.getAll();
+		
+		System.out.println("Config usuario aqui: ");
+		System.out.println(configUsuario);
+		
+	
 		
 		return new TokenTransfer(TokenUtils.createToken(userDetails),userDetails.getAccount(),configUsuario, new Long(0), filiais);
 

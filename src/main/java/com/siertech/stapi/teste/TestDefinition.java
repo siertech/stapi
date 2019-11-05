@@ -2,6 +2,7 @@ package com.siertech.stapi.teste;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.siertech.stapi.crud.CrudClass;
@@ -12,6 +13,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@Table(name = "testdefinition")
 public class TestDefinition extends CrudClass {
 	
 	@JsonView(Views.Public.class)

@@ -1,11 +1,10 @@
 <meta charset="UTF-8" />
-{{data}}
-<st-input-date ng-model="data" label="'data'"></st-input-date>
-<cliente-list fix-properties='{principalAttr:"Thomaz"}'></cliente-list>
+<st-check-list 
+    attr-label="principalAttr" 
+    hide-delete-all="true"
+    show-border-no-items="true"
+    hide-add = "true"
+    hide-checkbox="true"
+    crud-options = "{objectName: 'Cliente'}"
+    ></st-check-list>
 
-
-<div  ng-controller="moduloTestController">
-
-nome: {{nome}}
-
-</div>

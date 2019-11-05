@@ -11,6 +11,7 @@
 				defaultRoute: "/login",
 				securityPaths: "all", //paths da aplicação onde a autenticação no sistema é necessária
 				appVersion: "1.0",
+				fullScreenItemDetail: true,
 				initialPath: "/democompoment",
 				loginPath: "/login",
 				notFoundPath:"/notfound",

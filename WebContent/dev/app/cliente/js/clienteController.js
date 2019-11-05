@@ -9,6 +9,9 @@
 
 	function clienteDetalheCtrl($scope, $controller, item, functionToDetailNotify, objectName, stUtil){
 
+		
+		console.log("chegou no cliente detalhe");
+		
 		var ctrl = this;
 		angular.extend(ctrl, $controller('genericDetalheController', {
 			$scope: $scope,
