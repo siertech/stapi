@@ -55,6 +55,18 @@ public class UserSystemControl extends GenericControl<UserSystem> {
 	@RequestMapping(value="/user/login/", method= RequestMethod.POST)
 	public TokenTransfer  login(@RequestBody LoginData item) {
 
+		
+		
+		//Verifica primeiro se o usuário está cadastrado no sistema
+		try {
+			if(new DataBaseUtil().existeSchema(item.getUsuario()) == false){
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String usuario = item.getUsuario()+"@"+item.getEmpresa();
 		SecurityContextHolder.getContext().setAuthentication(null);
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(usuario, item.getSenha());

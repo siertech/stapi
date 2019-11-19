@@ -12,7 +12,7 @@
         <div class="md-dialog-content" ng-transclude>
        </div>
     </md-dialog-content>
-	<md-dialog-actions   layout="row">
+	<md-dialog-actions ng-hide="$stDetalheCtrl.hideCrudButtons === true"  layout="row">
       <md-button class="md-raised md-warn st-detalhe-delete-button" ng-if="$stDetalheCtrl.item.id" confirm ng-disabled="$stDetalheCtrl.loading==true"  ng-click="$stDetalheCtrl.deleteFunction()"  >
 	      <ng-md-icon icon="delete"></ng-md-icon>
 	       Deletar

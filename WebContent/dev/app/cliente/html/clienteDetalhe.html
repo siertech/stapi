@@ -1,8 +1,10 @@
 <meta charset="UTF-8" />
 
 <st-detalhe
+	  
 	   save-function ="$clienteDetalheCtrl.data.saveFunction($clienteDetalheCtrl.data.item)"
-	   delete-function = "$clienteDetalheCtrl.data.deleteFunction($clienteDetalheCtrl.data.item)"
+	   hide-crud-buttons ="true"
+ 	   delete-function = "$clienteDetalheCtrl.data.deleteFunction($clienteDetalheCtrl.data.item)"
 	   item = "$clienteDetalheCtrl.data.item"
 	   cancel-function = "$clienteDetalheCtrl.data.cancelFunction()"
 	   loading = "$clienteDetalheCtrl.data.loading"
@@ -10,3 +12,4 @@
 	   
 	   <cliente-form></cliente-form>
 </st-detalhe>
+

@@ -45814,6 +45814,217 @@ CodeMirror.defineMIME("application/typescript", { name: "javascript", typescript
 
 !function(a,b){function c(a,b,c){function d(d,e,f){return function(d,e,g){function h(a){j.seconds=Math.floor(a/1e3%60),j.totalSeconds=Math.floor(a/1e3),j.minutes=Math.floor(a/6e4%60),j.totalMinutes=Math.floor(a/6e4),j.hours=Math.floor(a/36e5%24),j.totalHours=Math.floor(a/36e5),j.totalDays=Math.floor(a/36e5/24)}function i(a,c){if(a)return b.error(a);var d=null;d=g.startTime?new Date(j.$eval(g.startTime)).getTime():Date.now(),isNaN(d)||(j.milliseconds=Math.abs(c.current-d),h(j.milliseconds),j.$digest())}var j=d.$new(),k=g.timerName;return k?(d.$on("$destroy",function(){c.unsubscribe(k,i)}),f(j,function(b,c){e.replaceWith(a(b)(c))}),c.subscribe(k,i),void 0):(b.error("timer-name must be specified"),void 0)}}return{restrict:"EA",replace:!0,scope:!0,transclude:!0,compile:d}}function d(a){return 0===a||a?(a=a.toString(),new Array(2-a.length+1).join("0")+a):void 0}function e(){return d}function f(a,b,c){this.timerId=null,this.name=a,this.opts=b||{interval:1e3},this.listener=c,this.current=this.started=Date.now()}function g(){this.timers={},this.listeners={}}b.module("angular-chrono",[]),b.module("angular-chrono").directive("chronoTimer",["$compile","$log","chronoService",c]),b.module("angular-chrono").filter("zeropad",e),f.prototype.start=function(){var a=this,b=(Date.now()-this.started)%1e3;return this.timerId=setTimeout(function(){a.listener(a.name,a),a.start()},this.opts.interval-b),this},f.prototype.stop=function(){return clearTimeout(this.timerId),this.timerId=null,this},g.prototype.addTimer=function(a,b){var c=this;return this.timers[a]=new f(a,b,function(a,b){return c.onTick(a,b)}),this},g.prototype.removeTimer=function(a){return this.timers[a]?(this.timers[a].stop(),delete this.timers[a],this):this},g.prototype.onTick=function(a,c){c.current=Date.now(),b.forEach(this.listeners[a],function(a){a(null,c)})},g.prototype.subscribe=function(a,b){return"function"!=typeof b&&(b=function(){}),this.timers[a]?(this.listeners[a]=this.listeners[a]||[],this.listeners[a].push(b),this):(b(new Error("Timer "+a+" not found")),this)},g.prototype.unsubscribe=function(a,c){if(!this.listeners[a])return this;var d=-1;return b.forEach(this.listeners[a],function(a,b){a===c&&(d=b)}),-1!==d&&this.listeners[a].splice(d,1),this},g.prototype.start=function(a){return a?(this.timers[a]&&this.timers[a].start(),void 0):(b.forEach(this.timers,function(a){a.start()}),this)},g.prototype.stop=function(a){return a?(this.timers[a]&&this.timers[a].stop(),void 0):(b.forEach(this.timers,function(a){a.stop()}),this)},g.prototype.clear=function(){b.forEach(this.timers,function(a){a.stop()}),this.timers={},this.listeners={}},b.module("angular-chrono").service("chronoService",[g])}(window,angular);
 !function(e,n,r){"use strict";function t(e,n){return("string"==typeof n||n instanceof String)&&(n=new RegExp(n)),n instanceof RegExp?n.test(e):n&&Array.isArray(n.and)?n.and.every(function(n){return t(e,n)}):n&&Array.isArray(n.or)?n.or.some(function(n){return t(e,n)}):n&&n.not?!t(e,n.not):!1}function o(e,n){return("string"==typeof n||n instanceof String)&&(n=new RegExp(n)),n instanceof RegExp?n.exec(e):n&&Array.isArray(n)?n.reduce(function(n,r){return n?n:o(e,r)},null):null}r&&r.module("reTree",[]).factory("reTree",[function(){return{test:t,exec:o}}]),n&&(n.reTree={test:t,exec:o}),e&&(e.exports={test:t,exec:o})}("undefined"==typeof module?null:module,"undefined"==typeof window?null:window,"undefined"==typeof angular?null:angular);
+/*global angular */
+
+/** Created by: Alex Wendland (me@alexwendland.com), 2014-08-06
+ *
+ *  angular-json-tree
+ *
+ *  Directive for creating a tree-view out of a JS Object. Only loads
+ *  sub-nodes on demand in order to improve performance of rendering large
+ *  objects.
+ *
+ *  Attributes:
+ *      - object (Object, 2-way): JS object to build the tree from
+ *      - start-expanded (Boolean, 1-way, ?=true): should the tree default to expanded
+ *
+ *  Usage:
+ *      // In the controller
+ *      scope.someObject = {
+ *          test: 'hello',
+ *          array: [1,1,2,3,5,8]
+ *      };
+ *      // In the html
+ *      <json-tree object="someObject"></json-tree>
+ *
+ *  Dependencies:
+ *      - utils (json-tree.js)
+ *      - ajsRecursiveDirectiveHelper (json-tree.js)
+ *
+ *  Test: json-tree-test.js
+ */
+(function() {
+'use strict';
+
+var utils = {
+    /* See link for possible type values to check against.
+     * http://stackoverflow.com/questions/4622952/json-object-containing-array
+     *
+     * Value               Class      Type
+     * -------------------------------------
+     * "foo"               String     string
+     * new String("foo")   String     object
+     * 1.2                 Number     number
+     * new Number(1.2)     Number     object
+     * true                Boolean    boolean
+     * new Boolean(true)   Boolean    object
+     * new Date()          Date       object
+     * new Error()         Error      object
+     * [1,2,3]             Array      object
+     * new Array(1, 2, 3)  Array      object
+     * new Function("")    Function   function
+     * /abc/g              RegExp     object (function in Nitro/V8)
+     * new RegExp("meow")  RegExp     object (function in Nitro/V8)
+     * {}                  Object     object
+     * new Object()        Object     object
+     */
+    is: function is(obj, clazz) {
+        return Object.prototype.toString.call(obj).slice(8, -1) === clazz;
+    },
+
+    // See above for possible values
+    whatClass: function whatClass(obj) {
+        return Object.prototype.toString.call(obj).slice(8, -1);
+    },
+
+    // Iterate over an objects keyset
+    forKeys: function forKeys(obj, f) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key) && typeof obj[key] !== 'function') {
+                if (f(key, obj[key])) {
+                    break;
+                }
+            }
+        }
+    }
+};
+
+angular.module('angular-json-tree', ['ajs.RecursiveDirectiveHelper'])
+    .directive('jsonTree', [function jsonTreeDirective() {
+        return {
+            restrict: 'E',
+            scope: {
+                object: '=',
+                startExpanded: '&?',
+                rootName: '&?',
+            },
+            template: '<json-node key="rootName() || \'Object\'" value="object" start-expanded="startExpanded()"></json-node>'
+        };
+    }])
+    .directive('jsonNode', ['ajsRecursiveDirectiveHelper', function jsonNodeDirective(ajsRecursiveDirectiveHelper) {
+        return {
+            restrict: 'E',
+            scope: {
+                key: '=',
+                value: '=',
+                startExpanded: '&?'
+            },
+            compile: function jsonNodeDirectiveCompile(elem) {
+                return ajsRecursiveDirectiveHelper.compile(elem, this);
+            },
+            template: ' <span class="key" ng-click="toggleExpanded()">{{key}}</span>' +
+                '       <span class="leaf-value" ng-if="!isExpandable">{{value}}</span>' +
+                '       <span class="branch-preview" ng-if="isExpandable" ng-show="!isExpanded" ng-click="toggleExpanded()">{{preview}}</span>' +
+                '       <ul class="branch-value" ng-if="isExpandable && shouldRender" ng-show="isExpanded">' +
+                '           <li ng-repeat="(subkey,subval) in value track by subkey">' +
+                '               <json-node key="subkey" value="subval"></json-node>' +
+                '           </li>' +
+                '       </ul>',
+            pre: function jsonNodeDirectiveLink(scope, elem, attrs) {
+                // Set value's type as Class for CSS styling
+                elem.addClass(utils.whatClass(scope.value).toLowerCase());
+                // If the value is an Array or Object, use expandable view type
+                if (utils.is(scope.value, 'Object') || utils.is(scope.value, 'Array')) {
+                    scope.isExpandable = true;
+                    // Add expandable class for CSS usage
+                    elem.addClass('expandable');
+                    // Add a class indicating an empty Object/Array (for removing expandable UI, if desired)
+                    if (Object.keys(scope.value).length < 1) {
+                      elem.addClass('empty');
+                    }
+                    // Setup preview text
+                    var isArray = utils.is(scope.value, 'Array');
+                    scope.preview = isArray ? '[ ' : '{ ';
+                    utils.forKeys(scope.value, function jsonNodeDirectiveLinkForKeys(key, value) {
+                        if (isArray) {
+                            scope.preview += value + ', ';
+                        } else {
+                            scope.preview += key + ': ' + value + ', ';
+                        }
+                    });
+                    scope.preview = scope.preview.substring(0, scope.preview.length - (scope.preview.length > 2 ? 2 : 0)) + (isArray ? ' ]' : ' }');
+                    // If parent directive has startExpanded set to recursive, inherit startExpanded
+                    if (scope.$parent && scope.$parent.startExpanded &&
+                          scope.$parent.startExpanded() == 'recursive') {
+                      scope.startExpanded = scope.$parent.startExpanded;
+                    }
+                    // If directive initially has isExpanded set, also set shouldRender to true
+                    if (scope.startExpanded && scope.startExpanded()) {
+                        scope.shouldRender = true;
+                        elem.addClass('expanded');
+                    }
+                    // Setup isExpanded state handling
+                    scope.isExpanded = scope.startExpanded ? scope.startExpanded() : false;
+                    if (scope.isExpanded == 'recursive') scope.isExpanded = true;
+                    scope.toggleExpanded = function jsonNodeDirectiveToggleExpanded() {
+                        scope.isExpanded = !scope.isExpanded;
+                        if (scope.isExpanded) {
+                            elem.addClass('expanded');
+                        } else {
+                            elem.removeClass('expanded');
+                        }
+                        // For delaying subnode render until requested
+                        scope.shouldRender = true;
+                    };
+                } else {
+                    scope.isExpandable = false;
+                    // Add expandable class for CSS usage
+                    elem.addClass('not-expandable');
+                }
+            }
+        };
+    }]);
+    /** Added by: Alex Wendland (me@alexwendland.com), 2014-08-09
+     *  Source: http://stackoverflow.com/questions/14430655/recursion-in-angular-directives
+     *
+     *  Used to allow for recursion within directives
+     */
+angular.module('ajs.RecursiveDirectiveHelper', [])
+     .factory('ajsRecursiveDirectiveHelper', ['$compile', function RecursiveDirectiveHelper($compile) {
+        return {
+            /**
+             * Manually compiles the element, fixing the recursion loop.
+             * @param element
+             * @param [link] A post-link function, or an object with function(s) registered via pre and post properties.
+             * @returns An object containing the linking functions.
+             */
+            compile: function RecursiveDirectiveHelperCompile(element, link) {
+                // Normalize the link parameter
+                if (angular.isFunction(link)) {
+                    link = {
+                        post: link
+                    };
+                }
+
+                // Break the recursion loop by removing the contents
+                var contents = element.contents().remove();
+                var compiledContents;
+                return {
+                    pre: (link && link.pre) ? link.pre : null,
+                    /**
+                     * Compiles and re-adds the contents
+                     */
+                    post: function RecursiveDirectiveHelperCompilePost(scope, element) {
+                        // Compile the contents
+                        if (!compiledContents) {
+                            compiledContents = $compile(contents);
+                        }
+                        // Re-add the compiled contents to the element
+                        compiledContents(scope, function (clone) {
+                            element.append(clone);
+                        });
+
+                        // Call the post-linking function, if any
+                        if (link && link.post) {
+                            link.post.apply(null, arguments);
+                        }
+                    }
+                };
+            }
+        };
+    }]);
+})();
+
 "use strict";
 
 var socialLogin = angular.module('socialLogin', []);
@@ -46032,3 +46243,135 @@ socialLogin.directive("fbLogin", ['$rootScope', 'social', 'socialLoginService', 
 		}
 	}
 }]);
+angular.module('angularResizable', [])
+    .directive('resizable', function() {
+        var toCall;
+        function throttle(fun) {
+            if (toCall === undefined) {
+                toCall = fun;
+                setTimeout(function() {
+                    toCall();
+                    toCall = undefined;
+                }, 100);
+            } else {
+                toCall = fun;
+            }
+        }
+        return {
+            restrict: 'AE',
+            scope: {
+                rDirections: "=",
+                rCenteredX: "=",
+                rCenteredY: "=",
+                rWidth: "=",
+                rHeight: "=",
+                rFlex: "=",
+                rGrabber: "@"
+            },
+            link: function(scope, element, attr) {
+                
+                // register watchers on width and height attributes if they are set
+                scope.$watch('rWidth', function(value){
+                    element[0].style.width = scope.rWidth + 'px';
+                });
+                scope.$watch('rHeight', function(value){
+                    element[0].style.height = scope.rHeight + 'px';
+                });
+
+                element.addClass('resizable');
+
+                var style = window.getComputedStyle(element[0], null),
+                    w,
+                    h,
+                    dir = scope.rDirections,
+                    vx = scope.rCenteredX ? 2 : 1, // if centered double velocity
+                    vy = scope.rCenteredY ? 2 : 1, // if centered double velocity
+                    inner = scope.rGrabber ? scope.rGrabber : '<span></span>',
+                    start,
+                    dragDir,
+                    axis,
+                    info = {};
+                
+                var updateInfo = function() {
+                    info.width = false; info.height = false;
+                    if(axis == 'x')
+                        info.width = scope.rFlex ? parseInt(element[0].style.flexBasis) : parseInt(element[0].style.width);
+                    else
+                        info.height = scope.rFlex ? parseInt(element[0].style.flexBasis) : parseInt(element[0].style.height);
+                    info.id = element[0].id;
+                }
+
+                var dragging = function(e) {
+                    var offset = axis == 'x' ? start - e.clientX : start - e.clientY;
+                    switch(dragDir) {
+                        case 'top':
+                            if(scope.rFlex) { element[0].style.flexBasis = h + (offset * vy) + 'px'; }
+                            else {            element[0].style.height = h + (offset * vy) + 'px'; }          
+                            break;
+                        case 'right':
+                            if(scope.rFlex) { element[0].style.flexBasis = w - (offset * vx) + 'px'; }
+                            else {            element[0].style.width = w - (offset * vx) + 'px'; }
+                            break;
+                        case 'bottom':
+                            if(scope.rFlex) { element[0].style.flexBasis = h - (offset * vy) + 'px'; }
+                            else {            element[0].style.height = h - (offset * vy) + 'px'; }
+                            break;
+                        case 'left':
+                            if(scope.rFlex) { element[0].style.flexBasis = w + (offset * vx) + 'px'; }
+                            else {            element[0].style.width = w + (offset * vx) + 'px'; }
+                            break;
+                    }
+                    updateInfo();
+                    throttle(function() { scope.$emit("angular-resizable.resizing", info);});
+                };
+                var dragEnd = function(e) {
+                    updateInfo();
+                    scope.$emit("angular-resizable.resizeEnd", info);
+                    scope.$apply();
+                    document.removeEventListener('mouseup', dragEnd, false);
+                    document.removeEventListener('mousemove', dragging, false);
+                    element.removeClass('no-transition');
+                };
+                var dragStart = function(e, direction) {
+                    dragDir = direction;
+                    axis = dragDir == 'left' || dragDir == 'right' ? 'x' : 'y';
+                    start = axis == 'x' ? e.clientX : e.clientY;
+                    w = parseInt(style.getPropertyValue("width"));
+                    h = parseInt(style.getPropertyValue("height"));
+                    
+                    //prevent transition while dragging
+                    element.addClass('no-transition');
+
+                    document.addEventListener('mouseup', dragEnd, false);
+                    document.addEventListener('mousemove', dragging, false);
+                    
+                    // Disable highlighting while dragging
+                    if(e.stopPropagation) e.stopPropagation();
+                    if(e.preventDefault) e.preventDefault();
+                    e.cancelBubble = true;
+                    e.returnValue = false;
+                    
+                    updateInfo();
+                    scope.$emit("angular-resizable.resizeStart", info);
+                    scope.$apply();
+                };
+
+                for(var i=0;i<dir.length;i++) {
+                    (function () {
+                        var grabber = document.createElement('div'),
+                            direction = dir[i];
+
+                        // add class for styling purposes
+                        grabber.setAttribute('class', 'rg-' + dir[i]);
+                        grabber.innerHTML = inner;
+                        element[0].appendChild(grabber);
+                        grabber.ondragstart = function() { return false }
+                        grabber.addEventListener('mousedown', function(e) {
+                            dragStart(e, direction);
+                        }, false);
+                    }())
+                }
+
+            }
+        }
+    });

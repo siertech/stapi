@@ -17,6 +17,7 @@ function stDetalhe(){
 			cancelFunction: "&",
 			deleteFunction: "&",
 			item: "<",
+			hideCrudButtons: "<",
 			loading:"<",
 			title: "@"
 		},
@@ -24,6 +25,9 @@ function stDetalhe(){
 		controller: function($scope){
 			var ctrl = this;
 			ctrl.scope = $scope;
+			
+			console.log("saveFunction aqui: ");
+			console.log(ctrl.saveFunction);
 		
 		}
 		

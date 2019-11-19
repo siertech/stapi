@@ -4861,6 +4861,40 @@
 		}
 
 
+		
+		
+		ctrl.editItem = function ($event, item, index) {
+			
+			
+			
+			
+			$mdDialog.show({
+				controllerAs: "$clienteDetalheCtrl",
+				controller: "clienteDetalheCtrl",
+				resolve:{
+					item: function(){return  item},
+					objectName: function(){ return "Cliente"},
+					functionToDetailNotify: function(){
+						
+						console.log("Chamou functionToDetailNotify no editItem");
+					}
+
+				},
+				templateUrl: "app/cliente/html/clienteDetalhe.html",
+
+				parent: parent || angular.element(document.body),
+				clickOutsideToClose: false,
+				
+			})
+			.then(function(res) {
+
+			}, function() {
+
+
+			});
+		}
+		
+		/*
 		ctrl.editItem = function ($event, item, index) {
 			var initalValue =  stUtil.getValue(item, ctrl.attrLabel);
 			var confirm = $mdDialog.prompt()
@@ -4886,6 +4920,8 @@
 			});
 
 		};
+		
+		*/
 
 		ctrl.addItem = function(labelValue){
 
@@ -8190,6 +8226,7 @@ function stDetalhe(){
 			cancelFunction: "&",
 			deleteFunction: "&",
 			item: "<",
+			hideCrudButtons: "<",
 			loading:"<",
 			title: "@"
 		},
@@ -8197,6 +8234,9 @@ function stDetalhe(){
 		controller: function($scope){
 			var ctrl = this;
 			ctrl.scope = $scope;
+			
+			console.log("saveFunction aqui: ");
+			console.log(ctrl.saveFunction);
 		
 		}
 		
