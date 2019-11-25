@@ -8,8 +8,9 @@
         <span flex></span>
       </div>
     </md-toolbar>
-  	<md-dialog-content>
-        <div class="md-dialog-content" ng-transclude>
+  	<md-dialog-content >
+  
+        <div class="md-dialog-content" ng-transclude ng-style="$stDetalheCtrl.dialogContentStyle">
        </div>
     </md-dialog-content>
 	<md-dialog-actions ng-hide="$stDetalheCtrl.hideCrudButtons === true"  layout="row">

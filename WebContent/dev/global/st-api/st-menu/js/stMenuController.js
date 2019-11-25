@@ -9,6 +9,7 @@
 
 		var ctrl = this;
 		ctrl.data = {};
+		ctrl.data.showMenu = true;
 		ctrl.data.toggleSideNav = toggleSideNav;
 		ctrl.data.logOut = logOut;
 		ctrl.data.changePath = changePath;

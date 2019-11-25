@@ -22,12 +22,19 @@ function stDetalhe(){
 			title: "@"
 		},
 		controllerAs: "$stDetalheCtrl",
-		controller: function($scope){
+		controller: function($scope, $mdMedia){
 			var ctrl = this;
 			ctrl.scope = $scope;
 			
-			console.log("saveFunction aqui: ");
-			console.log(ctrl.saveFunction);
+			var isMobile = ($mdMedia('sm') || $mdMedia('xs'));
+			
+			if(isMobile==true){
+				 ctrl.dialogContentStyle = {
+						padding: "2px"
+				 }
+			}
+				
+		
 		
 		}
 		

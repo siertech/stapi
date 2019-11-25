@@ -24,7 +24,8 @@
 		ctrl.data.cancelFunction = cancelFunction;
 		ctrl.data.deleteFunction = deleteFunction;
 		ctrl.data.saveFunction = saveFunction;
-
+		
+		
 		function cancelFunction(){
 
 			$mdDialog.cancel();
@@ -315,7 +316,10 @@
 
 		function showDetailDialog(item, parent){
 
-			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+			var isMobile = ($mdMedia('sm') || $mdMedia('xs'));
+			
+			
+			
 			$mdDialog.show({
 				controllerAs: detalheControllerAs,
 				controller: detalheController,
